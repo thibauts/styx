@@ -1,0 +1,14 @@
+{
+  "name": "nodejs-simple-processing",
+  "version": "1.0.0",
+  "description": "nodejs-simple-processing ========================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "websocket-stream": "^5.5.2"
+  }
+}
