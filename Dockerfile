@@ -15,6 +15,6 @@ COPY --from=builder /go/bin /usr/bin
 
 RUN mkdir data
 
-ENTRYPOINT ["styx-server", "--config", "/etc/styx/config.toml", "--log-level", "TRACE"]
+ENTRYPOINT ["styx-server", "--config", "/etc/styx/config.toml", "--log-level", "INFO"]
 
 EXPOSE 7123
