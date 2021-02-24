@@ -19,7 +19,7 @@ pip3 install -r requirements.txt
 Ensure Styx is running and create a "matches" log
 
 ```bash
-curl localhost:8000/logs -X POST -d name=matches
+curl localhost:7123/logs -X POST -d name=matches
 ```
 
 Run the processor

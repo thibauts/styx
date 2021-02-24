@@ -15,7 +15,7 @@ type Event struct {
 }
 
 func main() {
-	c := client.NewClient("http://localhost:8000")
+	c := client.NewClient("http://localhost:7123")
 
 	producer, err := c.NewProducer("fast", client.DefaultProducerOptions)
 	if err != nil {

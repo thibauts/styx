@@ -39,7 +39,7 @@ Options:
 	-l, --line-ending   	Specify line-ending [cr|lf|crlf] for non binary record output
 
 Global Options:
-	-H, --host string 	Server to connect to (default "http://localhost:8000")
+	-H, --host string 	Server to connect to (default "http://localhost:7123")
 	-h, --help 		Display help
 `
 
@@ -59,7 +59,7 @@ func ReadLog(args []string) {
 	unbuffered := readOpts.BoolP("unbuffered", "u", false, "")
 	binary := readOpts.BoolP("binary", "b", false, "")
 	lineEnding := readOpts.StringP("line-ending", "l", "lf", "")
-	host := readOpts.StringP("host", "H", "http://localhost:8000", "")
+	host := readOpts.StringP("host", "H", "http://localhost:7123", "")
 	isHelp := readOpts.BoolP("help", "h", false, "")
 	readOpts.Usage = func() {
 		cmd.DisplayUsage(cmd.MisuseCode, logsReadUsage)

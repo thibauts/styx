@@ -26,11 +26,11 @@ function transform() {
   });
 }
 
-const source = Websocket('ws://localhost:8000/logs/events/records?follow=true', {
+const source = Websocket('ws://localhost:7123/logs/events/records?follow=true', {
 	objectMode: true
 })
 
-const sink = Websocket('ws://localhost:8000/logs/stats/records', {
+const sink = Websocket('ws://localhost:7123/logs/stats/records', {
 	objectMode: true,
 	headers: {
 		'X-HTTP-Method-Override': 'POST'

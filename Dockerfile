@@ -17,4 +17,4 @@ RUN mkdir data
 
 ENTRYPOINT ["styx-server", "--config", "/etc/styx/config.toml", "--log-level", "TRACE"]
 
-EXPOSE 8000
+EXPOSE 7123

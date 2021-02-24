@@ -45,5 +45,5 @@ You should see stat counters update as you send requests.
 The latest values can read by fetching the last record from the stats log
 
 ```bash
-curl "localhost:8000/logs/stats/records?whence=end&position=-1" -s | jq .
+curl "localhost:7123/logs/stats/records?whence=end&position=-1" -s | jq .
 ``

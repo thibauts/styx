@@ -11,7 +11,7 @@ Assuming you have never consumed any records from `myLog` and you want to retrie
 import request
 
 res = requests.get(
-  'http://localhost:8000/logs/myLog/records',
+  'http://localhost:7123/logs/myLog/records',
   headers={
     'Accept': 'application/vnd.styx.line-delimited;line-ending=lf',
   },
@@ -31,7 +31,7 @@ import (
 
 client := &http.Client{}
 
-req, err := http.NewRequest(http.MethodGet, "http://localhost:8000/logs/myLog/records?count=100", nil)
+req, err := http.NewRequest(http.MethodGet, "http://localhost:7123/logs/myLog/records?count=100", nil)
 if err != nil {
   log.Fatal(err)
 }
@@ -52,7 +52,7 @@ Assuming you effectively read 100 records, you have to increment the `position` 
 import request
 
 res = requests.get(
-  'http://localhost:8000/logs/myLog/records',
+  'http://localhost:7123/logs/myLog/records',
   headers={
     'Accept': 'application/vnd.styx.line-delimited;line-ending=lf',
   },
@@ -73,7 +73,7 @@ import (
 
 client := &http.Client{}
 
-req, err := http.NewRequest(http.MethodGet, "http://localhost:8000/logs/myLog/records?position=100&count=100", nil)
+req, err := http.NewRequest(http.MethodGet, "http://localhost:7123/logs/myLog/records?position=100&count=100", nil)
 if err != nil {
   log.Fatal(err)
 }
@@ -95,7 +95,7 @@ Now you want to wait for new records to be written by adding the `follow` query 
 import request
 
 res = requests.get(
-  'http://localhost:8000/logs/myLog/records',
+  'http://localhost:7123/logs/myLog/records',
   headers={
     'Accept': 'application/vnd.styx.line-delimited;line-ending=lf',
     'X-Styx-Timeout': '30'
@@ -118,7 +118,7 @@ import (
 
 client := &http.Client{}
 
-req, err := http.NewRequest(http.MethodGet, "http://localhost:8000/logs/myLog/records?position=150&count=100&follow=true", nil)
+req, err := http.NewRequest(http.MethodGet, "http://localhost:7123/logs/myLog/records?position=150&count=100&follow=true", nil)
 if err != nil {
   log.Fatal(err)
 }
@@ -146,7 +146,7 @@ import requests
 position = 0
 while True:
   res = requests.get(
-    'http://localhost:8000/logs/myLog/records',
+    'http://localhost:7123/logs/myLog/records',
     headers={
       'Accept': 'application/vnd.styx.line-delimited;line-ending=lf',
       'X-Styx-Timeout': '30'
@@ -180,7 +180,7 @@ client := &http.Client{}
 position := int64(0)
 
 for {
-  url := "http://localhost:8000/logs/myLog/records?position=" + strconv.FormatInt(position, 10) + "&count=100&follow=true"
+  url := "http://localhost:7123/logs/myLog/records?position=" + strconv.FormatInt(position, 10) + "&count=100&follow=true"
 
   req, err := http.NewRequest(http.MethodGet, url, nil)
   if err != nil {

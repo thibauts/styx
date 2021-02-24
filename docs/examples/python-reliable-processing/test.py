@@ -3,7 +3,7 @@
 # STYX_SOURCE = 'gdax'
 # position = 0
 
-# source = websocket.create_connection('ws://localhost:8000/logs/%s/records?position=%d' % (STYX_SOURCE, position))
+# source = websocket.create_connection('ws://localhost:7123/logs/%s/records?position=%d' % (STYX_SOURCE, position))
 
 # for record in source:
 # 	print(record)
@@ -18,7 +18,7 @@
 
 # 	async with aiohttp.ClientSession() as session:
 
-# 		ws = await session.ws_connect('ws://localhost:8000/logs/%s/records?position=%d&follow=true' % (STYX_SOURCE, position))
+# 		ws = await session.ws_connect('ws://localhost:7123/logs/%s/records?position=%d&follow=true' % (STYX_SOURCE, position))
 
 # 		while True:
 
@@ -45,7 +45,7 @@ position = 0
 
 async def main():
 
-	uri = 'ws://localhost:8000/logs/%s/records?position=%d&follow=false' % (STYX_SOURCE, position)
+	uri = 'ws://localhost:7123/logs/%s/records?position=%d&follow=false' % (STYX_SOURCE, position)
 
 	async with websockets.connect(uri) as source:
 

@@ -24,14 +24,14 @@ Usage: styx logs backup NAME [OPTIONS]
 Backup log
 
 Global Options:
-	-H, --host string 	Server to connect to (default "http://localhost:8000")
+	-H, --host string 	Server to connect to (default "http://localhost:7123")
 	-h, --help 		Display help
 `
 
 func BackupLog(args []string) {
 
 	backupOpts := pflag.NewFlagSet("logs backup", pflag.ContinueOnError)
-	host := backupOpts.StringP("host", "H", "http://localhost:8000", "")
+	host := backupOpts.StringP("host", "H", "http://localhost:7123", "")
 	isHelp := backupOpts.BoolP("help", "h", false, "")
 	backupOpts.Usage = func() {
 		cmd.DisplayUsage(cmd.MisuseCode, logsBackupUsage)

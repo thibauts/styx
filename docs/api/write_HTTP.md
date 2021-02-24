@@ -31,7 +31,7 @@ Status: 200 OK
 **Curl**
 
 ```bash
-$ curl -X POST 'http://localhost:8000/logs/myLog/records' -d 'my record content'
+$ curl -X POST 'http://localhost:7123/logs/myLog/records' -d 'my record content'
 ```
 
 **Python** (_Requires [requests](https://pypi.org/project/requests/) package._)
@@ -39,7 +39,7 @@ $ curl -X POST 'http://localhost:8000/logs/myLog/records' -d 'my record content'
 ```python
 import requests
 
-requests.post('http://localhost:8000/logs/myLog/records', data=b'my record content')
+requests.post('http://localhost:7123/logs/myLog/records', data=b'my record content')
 ```
 
 **Go**
@@ -52,7 +52,7 @@ import (
 
 client := &http.Client{}
 client.Post(
-  "http://localhost:8000/logs/myLog/records", 
+  "http://localhost:7123/logs/myLog/records", 
   "application/octet-stream", 
   bytes.NewReader([]byte("my record content")),
 )
@@ -63,7 +63,7 @@ client.Post(
 **Curl**
 
 ```bash
-$ curl -X POST 'http://localhost:8000/logs/myLog/records' \
+$ curl -X POST 'http://localhost:7123/logs/myLog/records' \
   -H 'Content-Type: application/vnd.styx.line-delimited;line-ending=lf' \
   -d $'my record content\nmy record content\n'
 ```
@@ -74,7 +74,7 @@ $ curl -X POST 'http://localhost:8000/logs/myLog/records' \
 import requests
 
 requests.post(
-  'http://localhost:8000/logs/myLog/records',
+  'http://localhost:7123/logs/myLog/records',
   headers={
     'Content-Type': 'application/vnd.styx.line-delimited;line-ending=lf'
   },
@@ -95,7 +95,7 @@ records := strings.Repeat("my record content\n", 10)
 
 client := &http.Client{}
 client.Post(
-  "http://localhost:8000/logs/myLog/records",
+  "http://localhost:7123/logs/myLog/records",
   "application/vnd.styx.line-delimited;line-ending=lf", 
   bytes.NewReader([]byte(records)),
 )

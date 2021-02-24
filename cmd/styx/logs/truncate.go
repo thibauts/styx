@@ -22,14 +22,14 @@ Usage: styx logs truncate NAME [OPTIONS]
 Truncate a log
 
 Global Options:
-	-H, --host string 	Server to connect to (default "http://localhost:8000")
+	-H, --host string 	Server to connect to (default "http://localhost:7123")
 	-h, --help 		Display help
 `
 
 func TruncateLog(args []string) {
 
 	truncateOpts := pflag.NewFlagSet("logs truncate", pflag.ContinueOnError)
-	host := truncateOpts.StringP("host", "H", "http://localhost:8000", "")
+	host := truncateOpts.StringP("host", "H", "http://localhost:7123", "")
 	isHelp := truncateOpts.BoolP("help", "h", false, "")
 	truncateOpts.Usage = func() {
 		cmd.DisplayUsage(cmd.MisuseCode, logsTruncateUsage)

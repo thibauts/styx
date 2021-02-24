@@ -5,7 +5,7 @@ from datetime import datetime
 import asyncio
 import aiohttp
 
-STYX_URL = 'http://localhost:8000/logs/measures/records'
+STYX_URL = 'http://localhost:7123/logs/measures/records'
 
 async def producer(producer_id):
 

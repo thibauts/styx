@@ -25,7 +25,7 @@ Status: 101 Switching protocol
 
 **Wsdump** (_Requires [websocket-client](https://pypi.org/project/websocket-client-py3/) package._)
 ```bash
-$ echo 'my record content' | wsdump.py ws://localhost:8000/logs/myLog/records --headers 'X-HTTP-Method-Override: POST'
+$ echo 'my record content' | wsdump.py ws://localhost:7123/logs/myLog/records --headers 'X-HTTP-Method-Override: POST'
 ```
 
 **Python** (_Requires [websocket-client](https://pypi.org/project/websocket-client-py3/) package._)
@@ -34,7 +34,7 @@ $ echo 'my record content' | wsdump.py ws://localhost:8000/logs/myLog/records --
 import websocket
 
 ws = websocket.create_connection(
-  'ws://localhost:8000/logs/myLog/records', 
+  'ws://localhost:7123/logs/myLog/records', 
   header=['X-HTTP-Method-Override: POST']
 )
 
@@ -59,7 +59,7 @@ headers := http.Header{}
 headers.Set("Origin", "localhost")
 headers.Set("X-HTTP-Method-Override", "POST")
 
-conn, resp, err := dialer.Dial("ws://localhost:8000/logs/myLog/records", headers)
+conn, resp, err := dialer.Dial("ws://localhost:7123/logs/myLog/records", headers)
 if err != nil {
   log.Fatal(err)
 }

@@ -15,13 +15,13 @@ go get gitlab.com/dataptive/styx
 Ensure Styx is running and create a "fast" log
 
 ```bash
-curl localhost:8000/logs -X POST -d name=fast
+curl localhost:7123/logs -X POST -d name=fast
 ```
 
 Setup a watch on the log to monitor its growth
 
 ```bash
-watch curl localhost:8000/logs/fast -s
+watch curl localhost:7123/logs/fast -s
 ```
 
 In another terminal, run the producer
@@ -33,5 +33,5 @@ go run main.go
 When you're done, it may be a good idea to free disk space by deleting the log
 
 ```bash
-curl localhost:8000/logs/fast -X DELETE
+curl localhost:7123/logs/fast -X DELETE
 ```

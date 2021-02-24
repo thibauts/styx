@@ -15,7 +15,7 @@ pip3 install -r requirements.txt
 Ensure Styx is running and create a "gdax" log
 
 ```bash
-curl localhost:8000/logs -X POST -d name=gdax
+curl localhost:7123/logs -X POST -d name=gdax
 ```
 
 Run the connector
@@ -27,7 +27,7 @@ python3 main.py
 From another terminal, check that the log is filling with GDAX events
 
 ```bash
-curl localhost:8000/logs/gdax
+curl localhost:7123/logs/gdax
 ```
 
 Try consuming the events from Styx in another terminal.
@@ -35,5 +35,5 @@ Try consuming the events from Styx in another terminal.
 ```bash
 https://github.com/websocket-client/websocket-client.git
 cd websocket-client/bin
-python3 wsdump.py ws://localhost:8000/logs/gdax/records
+python3 wsdump.py ws://localhost:7123/logs/gdax/records
 ```

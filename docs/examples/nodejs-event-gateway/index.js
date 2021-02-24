@@ -15,7 +15,7 @@ const server = http.createServer((req, res) => {
 
 	const options = {
 		hostname: 'localhost',
-		port: 8000,
+		port: 7123,
 		path: '/logs/events/records',
 		method: 'POST',
 		headers: {

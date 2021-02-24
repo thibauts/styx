@@ -26,7 +26,7 @@ Status: 101 Switching protocol
 
 **Wsdump** (_Requires [websocket-client](https://pypi.org/project/websocket-client-py3/) package._)
 ```bash
-$ wsdump.py ws://localhost:8000/logs/myLog/records
+$ wsdump.py ws://localhost:7123/logs/myLog/records
 ```
 
 **Python** (_Requires [websocket-client](https://pypi.org/project/websocket-client-py3/) package._)
@@ -34,7 +34,7 @@ $ wsdump.py ws://localhost:8000/logs/myLog/records
 ```python
 import websocket
 
-ws = websocket.create_connection('ws://localhost:8000/logs/myLog/records')
+ws = websocket.create_connection('ws://localhost:7123/logs/myLog/records')
 while True:
   record = ws.recv()
   print(record)
@@ -51,7 +51,7 @@ import (
 
 dialer := websocket.Dialer{}
 
-conn, res, err := dialer.Dial("ws://localhost:8000/logs/myLog/records?whence=start&position=0", nil)
+conn, res, err := dialer.Dial("ws://localhost:7123/logs/myLog/records?whence=start&position=0", nil)
 if err != nil {
   log.Fatal(err)
 }

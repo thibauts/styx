@@ -6,7 +6,7 @@ Monitor
 By default Styx provides an endpoint with Prometheus metrics.
 
 ```bash
-$ curl --XGET 'http://localhost:8000/metrics'
+$ curl --XGET 'http://localhost:7123/metrics'
 ```
 
 The response provide various information about Styx process, such as number of goroutines memory etc.

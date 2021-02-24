@@ -23,7 +23,7 @@ Commands:
 
 Global Options:
         -f, --format string     Output format [text|json] (default "text")
-        -H, --host string       Server to connect to (default "http://localhost:8000")
+        -H, --host string       Server to connect to (default "http://localhost:7123")
         -h, --help              Display help
 ```
 
@@ -40,7 +40,7 @@ List available logs
 Global Options:
         -w, --watch             Display and update informations about logs
         -f, --format string     Output format [text|json] (default "text")
-        -H, --host string       Server to connect to (default "http://localhost:8000")
+        -H, --host string       Server to connect to (default "http://localhost:7123")
         -h, --help              Display help
 ```
 
@@ -75,7 +75,7 @@ Options:
 
 Global Options:
         -f, --format string             Output format [text|json] (default "text")
-        -H, --host string               Server to connect to (default "http://localhost:8000")
+        -H, --host string               Server to connect to (default "http://localhost:7123")
         -h, --help                      Display help
 ```
 
@@ -103,7 +103,7 @@ Show log details
 
 Global Options:
         -f, --format string     Output format [text|json] (default "text")
-        -H, --host string       Server to connect to (default "http://localhost:8000")
+        -H, --host string       Server to connect to (default "http://localhost:7123")
         -h, --help              Display help
 ```
 
@@ -130,7 +130,7 @@ Usage: styx logs delete NAME [OPTIONS]
 Delete a log
 
 Global Options:
-        -H, --host string       Server to connect to (default "http://localhost:8000")
+        -H, --host string       Server to connect to (default "http://localhost:7123")
         -h, --help              Display help
 ```
 
@@ -151,7 +151,7 @@ Usage: styx logs backup NAME [OPTIONS]
 Backup log
 
 Global Options:
-        -H, --host string       Server to connect to (default "http://localhost:8000")
+        -H, --host string       Server to connect to (default "http://localhost:7123")
         -h, --help              Display help
 ```
 
@@ -172,7 +172,7 @@ Usage: styx logs restore NAME [OPTIONS]
 Restore log
 
 Global Options:
-        -H, --host string       Server to connect to (default "http://localhost:8000")
+        -H, --host string       Server to connect to (default "http://localhost:7123")
         -h, --help              Display help
 ```
 
@@ -198,7 +198,7 @@ Options:
         -l, --line-ending       Line end [cr|lf|crlf] for non binary record output
 
 Global Options:
-        -H, --host string       Server to connect to (default "http://localhost:8000")
+        -H, --host string       Server to connect to (default "http://localhost:7123")
         -h, --help              Display help
 ```
 
@@ -230,7 +230,7 @@ Options:
         -l, --line-ending       Line end [cr|lf|crlf] for non binary record output
 
 Global Options:
-        -H, --host string       Server to connect to (default "http://localhost:8000")
+        -H, --host string       Server to connect to (default "http://localhost:7123")
         -h, --help              Display help
 ```
 

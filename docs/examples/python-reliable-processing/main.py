@@ -6,7 +6,7 @@ STYX_SOURCE = 'gdax'
 STYX_SINK = 'matches'
 
 # Try to fetch the last processed position from the sink log: if not available, restart at 0.
-res = requests.get('http://localhost:8000/logs/%s/records' % STYX_SINK, params={
+res = requests.get('http://localhost:7123/logs/%s/records' % STYX_SINK, params={
 	'position': -1,
 	'whence': 'end'
 })
@@ -19,8 +19,8 @@ else:
 print("restarting at position %d" % position)
 
 # Setup source and sink websocket streams. Request source from restart position.
-source = websocket.create_connection('ws://localhost:8000/logs/%s/records?position=%d&follow=true' % (STYX_SOURCE, position))
-sink = websocket.create_connection('ws://localhost:8000/logs/%s/records' % STYX_SINK, header=[
+source = websocket.create_connection('ws://localhost:7123/logs/%s/records?position=%d&follow=true' % (STYX_SOURCE, position))
+sink = websocket.create_connection('ws://localhost:7123/logs/%s/records' % STYX_SINK, header=[
 	'X-HTTP-Method-Override: POST'
 ])
 

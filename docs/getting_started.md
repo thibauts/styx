@@ -12,7 +12,7 @@ $ docker build -t styx .
 ### Run Styx
 
 ```bash
-$ docker run -it --rm -p 8000:8000 --name styx styx
+$ docker run -it --rm -p 7123:7123 --name styx styx
 ```
 
 ### Create a log

@@ -27,7 +27,7 @@ Commands:
 
 Global Options:
 	-f, --format string	Output format [text|json] (default "text")
-	-H, --host string 	Server to connect to (default "http://localhost:8000")
+	-H, --host string 	Server to connect to (default "http://localhost:7123")
 	-h, --help 		Display help
 `
 
@@ -49,7 +49,7 @@ Commands:
 
 Global Options:
 	-f, --format string	Output format [text|json] (default "text")
-	-H, --host string 	Server to connect to (default "http://localhost:8000")
+	-H, --host string 	Server to connect to (default "http://localhost:7123")
 	-h, --help 		Display help
 `
 )

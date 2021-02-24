@@ -27,7 +27,7 @@ List available logs
 Global Options:
 	-w, --watch		Display and update informations about logs
 	-f, --format string	Output format [text|json] (default "text")
-	-H, --host string 	Server to connect to (default "http://localhost:8000")
+	-H, --host string 	Server to connect to (default "http://localhost:7123")
 	-h, --help 		Display help
 `
 
@@ -40,7 +40,7 @@ func ListLogs(args []string) {
 	listOpts := pflag.NewFlagSet("logs list", pflag.ContinueOnError)
 	watch := listOpts.BoolP("watch", "w", false, "")
 	format := listOpts.StringP("format", "f", "default", "")
-	host := listOpts.StringP("host", "H", "http://localhost:8000", "")
+	host := listOpts.StringP("host", "H", "http://localhost:7123", "")
 	isHelp := listOpts.BoolP("help", "h", false, "")
 	listOpts.Usage = func() {
 		cmd.DisplayUsage(cmd.MisuseCode, logsListUsage)

@@ -6,7 +6,7 @@
 pid_file = "./styx.pid"
 
 # IP:port to bind to
-bind_address = "0.0.0.0:8000"
+bind_address = "0.0.0.0:7123"
 
 # Number of seconds styx waits for graceful shutdown completion
 shutdown_timeout = 3

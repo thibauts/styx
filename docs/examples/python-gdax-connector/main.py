@@ -1,7 +1,7 @@
 import websocket
 import json
 
-STYX_URL = 'ws://localhost:8000/logs/gdax/records'
+STYX_URL = 'ws://localhost:7123/logs/gdax/records'
 GDAX_URL = 'wss://ws-feed.gdax.com'
 
 # Connect to GDAX Websocket feed and subscribe to the full BTC-USD order feed

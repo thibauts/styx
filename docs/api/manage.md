@@ -26,7 +26,7 @@ Create a new log.
 **Bash**
 
 ```bash
-$ curl -X POST 'http://localhost:8000/logs' -d name=myLog
+$ curl -X POST 'http://localhost:7123/logs' -d name=myLog
 ```
 
 ### Response
@@ -56,7 +56,7 @@ Retrieves the details of all Styx logs.
 **Bash**
 
 ```bash
-$ curl -X GET 'http://localhost:8000/logs'
+$ curl -X GET 'http://localhost:7123/logs'
 ```
 
 ### Response
@@ -102,7 +102,7 @@ Retrieves the details of a log.
 **Bash**
 
 ```bash
-$ curl -X GET 'http://localhost:8000/logs/myLog'
+$ curl -X GET 'http://localhost:7123/logs/myLog'
 ```
 
 ### Response
@@ -138,7 +138,7 @@ Permanently delete a log and its data.
 **Bash**
 
 ```bash
-$ curl -X DELETE 'http://localhost:8000/logs/myLog'
+$ curl -X DELETE 'http://localhost:7123/logs/myLog'
 ```
 
 ## Truncate log
@@ -158,7 +158,7 @@ Empty a log of all its records.
 **Bash**
 
 ```bash
-$ curl -X POST 'http://localhost:8000/logs/myLog/truncate'
+$ curl -X POST 'http://localhost:7123/logs/myLog/truncate'
 ```
 
 ### Response
@@ -184,7 +184,7 @@ Download a backup of the log.
 **Bash**
 
 ```bash
-$ curl -X GET 'http://localhost:8000/logs/myLog/backup' -o myLogBackup.tar.gz
+$ curl -X GET 'http://localhost:7123/logs/myLog/backup' -o myLogBackup.tar.gz
 ```
 
 ### Response
@@ -213,7 +213,7 @@ Imports a previously backed up log archive.
 **Bash**
 
 ```bash
-$ curl -X POST 'http://localhost:8000/logs/restore?name=myRestoredLog' --data-binary '@myLogBackup.tar.gz'  
+$ curl -X POST 'http://localhost:7123/logs/restore?name=myRestoredLog' --data-binary '@myLogBackup.tar.gz'  
 ```
 
 ### Response

@@ -32,7 +32,7 @@ Response contains records formatted according to `Accept`header.
 **Curl**
 
 ```bash
-$ curl -X GET 'http://localhost:8000/logs/myLog/records&whence=start'
+$ curl -X GET 'http://localhost:7123/logs/myLog/records&whence=start'
 ```
 
 **Python** (_Requires [requests](https://pypi.org/project/requests/) package._)
@@ -41,7 +41,7 @@ $ curl -X GET 'http://localhost:8000/logs/myLog/records&whence=start'
 import requests
 
 res = requests.get(
-  'http://localhost:8000/logs/myLog/records',
+  'http://localhost:7123/logs/myLog/records',
   params={
     'whence': 'start'
   }
@@ -62,7 +62,7 @@ import (
 
 client := &http.Client{}
 
-res, err := client.Get("http://localhost:8000/logs/myLog/records?whence=start")
+res, err := client.Get("http://localhost:7123/logs/myLog/records?whence=start")
 if err != nil {
   log.Fatal(err)
 }
@@ -80,7 +80,7 @@ fmt.Println(record)
 **Curl**
 
 ```bash
-$ curl -X GET 'http://localhost:8000/logs/myLog/records?whence=start&count=10' \
+$ curl -X GET 'http://localhost:7123/logs/myLog/records?whence=start&count=10' \
   -H 'Accept: application/vnd.styx.line-delimited;line-ending=lf'
 ```
 
@@ -90,7 +90,7 @@ $ curl -X GET 'http://localhost:8000/logs/myLog/records?whence=start&count=10' \
 import requests
 
 res = requests.get(
-  'http://localhost:8000/logs/myLog/records',
+  'http://localhost:7123/logs/myLog/records',
   params={
     'whence': 'start',
     'count': 10
@@ -116,7 +116,7 @@ import (
 
 client := &http.Client{}
 
-req, err := http.NewRequest(http.MethodGet, "http://localhost:8000/logs/myLog/records?whence=start&count=10", nil)
+req, err := http.NewRequest(http.MethodGet, "http://localhost:7123/logs/myLog/records?whence=start&count=10", nil)
 if err != nil {
   log.Fatal(err)
 }

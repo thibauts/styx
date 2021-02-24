@@ -35,7 +35,7 @@ Options:
 
 Global Options:
 	-f, --format string		Output format [text|json] (default "text")
-	-H, --host string 		Server to connect to (default "http://localhost:8000")
+	-H, --host string 		Server to connect to (default "http://localhost:7123")
 	-h, --help 			Display help
 `
 
@@ -59,7 +59,7 @@ func CreateLog(args []string) {
 	logMaxSize := createOpts.Int64("log-max-size", log.DefaultConfig.LogMaxSize, "")
 	logMaxAge := createOpts.Int64("log-max-age", log.DefaultConfig.LogMaxAge, "")
 	format := createOpts.StringP("format", "f", "text", "")
-	host := createOpts.StringP("host", "H", "http://localhost:8000", "")
+	host := createOpts.StringP("host", "H", "http://localhost:7123", "")
 	isHelp := createOpts.BoolP("help", "h", false, "")
 	createOpts.Usage = func() {
 		cmd.DisplayUsage(cmd.MisuseCode, logsCreateUsage)

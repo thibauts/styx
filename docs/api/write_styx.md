@@ -26,7 +26,7 @@ Status: 101 Switching protocol
 **Go** (_Requires [styx/client](), [styx/log]() packages._)
 
 ```golang
-c := client.NewClient("http://localhost:8000")
+c := client.NewClient("http://localhost:7123")
 
 producer, err := c.NewProducer("test", client.DefaultProducerOptions)
 if err != nil {
