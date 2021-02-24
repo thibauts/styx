@@ -55,35 +55,9 @@ Usage of the word `log` in Styx should not be confused with textual application 
 
 Event `logs` are append-only and immutable. As they are persisted to disk, event `logs` can be consumed in real-time by susbcribers, and can also be replayed from the beggining or from any arbitrary `position`. This unlocks keeping a complete history of published events, regenerating downstream data when updating your app, or replaying complete streams through new processing logic as unexpected needs surface.
 
-### Processing patterns
+## Using Styx
 
-As opposed to traditional Message Queueing or Streaming Platforms like RabbitMQ, Apache Kafka or Apache Pulsar, Styx does not provide a message acknowledgment mecanism. Message ACKing can still be implemented by creating consumer `position` logs with limited retention, but we encourage patterns that in our opinion are both simpler and safer to use.
-
-Relying on the atomicity guarantees provided by Styx (an event `record` is either completely persisted or is not persisted at all), the recommended pattern to keep track of consumer `position` is to store it atomically with consumer output data in the `target` log.
-
-A consumer implementing a counter would keep track of its state like this:
-
-Input event #123, read from the `source` log.
-
-```json
-{
-	"type": "increment",
-	"value": 1
-}
-```
-
-Output state written by the consumer to the `target` log.
-
-```json
-{
-	"total": 19872,
-	"position": 123
-}
-```
-
-In case of failure of either the consumer or Styx, the consumer can easily find its restart position by requesting the last event record from the `target` log, extracting the `position` field and retarting consumption from `position+1`. This avoids the *at-least-once* and *at-most-once* issues in processing setups. See [python-reliable-processing](./docs/examples/python-reliable-processing) for an example Python script implementing this pattern.
-
-This strategy can be implemented with any output Store or Database, as long as the consumer `position` can be stored atomically with the output data, either in the same row, document, record, or in a transaction.
+Styx usage can differ from traditional Message Queues and Streaming Platforms. In particular we encourage usage patterns that remove the need for consumer acks while providing stronger guarantees. You should consider reading the [Reliable Processing Howto](./docs/howto/reliable-processing.md) as an introduction.
 
 Reliable event production from external sources to Styx logs can also be achieved with data sources exhibiting particular properties. We plan on developing this subject and other usage patterns in Howto's and tutorial as soon as possible.
 
