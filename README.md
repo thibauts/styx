@@ -1,6 +1,6 @@
 # Styx
 
-Styx is a simple and high-performance event streaming database. It aims to provide teams of all sizes with a simple to operate storage system for event streams. Styx is deployed as a single binary with no dependencies, it exposes a high-performance binary protocol as well as HTTP and WebSockets APIs for both event production and consumption.
+Styx is a simple and high-performance event streaming database. It aims to provide teams of all sizes with a simple to operate, disk persisted publish-subscribe system for event streams. Styx is deployed as a single binary with no dependencies, it exposes a high-performance binary protocol as well as HTTP and WebSockets APIs for both event production and consumption.
 
 Designed around the concept of a Commit Log as popularized by projects like Apache Kafka or Apache Pulsar, Styx provides durable storage and atomicity on tail-able event logs.
 
@@ -8,17 +8,17 @@ Main features:
 
 - Deployed as a **single binary** with **no dependency**
 - Designed to run and provide durability as a **single-node** system
-- Native **REST API** for event **production and consumption**, including batched with long-polling support
-- Native **REST API** for event **log management**
-- Native **WebSockets API** both for event production and consumption
 - Out-of-the-box **Prometheus** and **Statsd** monitoring
-- **Decoupled storage engine** that can be used standalone
+- **Full-featured CLI** for event log management, **backup/restore** and flexible **bulk load/export**
 - Event records are **immutable**, **atomic**, **durable**, and fsynced to permanent storage before being acked
-- **Full-featured CLI** for event log management, **backup/restore** and flexible event log bulk **loading/exporting**
 - Configurable **retention policies**
 - **Small footprint**. Very low memory and CPU consumption
+- Native **REST API** for event log **management**
+- Native **REST API** for event **production and consumption**, including batched with long-polling support
+- Native **WebSockets API** both for event production and consumption
 - **Millions of events/second**, **GB/s throughput**, low latency
 - Scales to **thousands of producers, consumers, and event logs**
+- **Decoupled storage engine** that can be used standalone
 
 Styx is designed to be a no-brainer for teams that don't want to invest resources in complex (and sometimes fragile) clustered solutions, while providing data safety, plenty of room to scale and instant integration in any language.
 
