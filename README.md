@@ -1,6 +1,6 @@
 # Styx
 
-Styx is a simple and high-performance event streaming platform. It aims to provide teams of all sizes with a simple to operate, disk persisted publish-subscribe system for event streams. Styx is deployed as a single binary with no dependencies, it exposes a high-performance binary protocol as well as HTTP and WebSockets APIs for both event production and consumption.
+Styx is a simple and high-performance event streaming platform. It aims to provide teams of all sizes with a simple to operate, disk-persisted publish-subscribe system for event streams. Styx is deployed as a single binary with no dependencies, it exposes a high-performance binary protocol as well as HTTP and WebSockets APIs for both event production and consumption.
 
 Designed around the concept of a Commit Log as popularized by projects like Apache Kafka or Apache Pulsar, Styx provides durable storage and atomicity on tail-able event logs.
 
@@ -218,7 +218,7 @@ TODO !
 
 ## License
 
-Styx is published under an Apache 2.0+BSL [LICENSE](LICENSE). The BSL part is meant to prevent cloud providers from selling Styx as a service at zero cost. Apart from that, you should be safe to use it as you see fit, for example as a service inside your company, or even as a value-added service in a product you are distributing or selling.
+Styx is published under an Apache 2.0+BSL [LICENSE](LICENSE). The BSL part is meant to prevent cloud providers from selling Styx as a service at zero cost. Apart from that, you should be safe to use it as you see fit, for example as a service inside your company, or as a service in a value-added product you are distributing or selling.
 
 ## Contributing
 
