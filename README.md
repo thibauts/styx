@@ -1,6 +1,6 @@
 # Styx
 
-Styx is a simple and high-performance event streaming database. It aims to provide teams of all sizes with a simple to operate, disk persisted publish-subscribe system for event streams. Styx is deployed as a single binary with no dependencies, it exposes a high-performance binary protocol as well as HTTP and WebSockets APIs for both event production and consumption.
+Styx is a simple and high-performance event streaming platform. It aims to provide teams of all sizes with a simple to operate, disk persisted publish-subscribe system for event streams. Styx is deployed as a single binary with no dependencies, it exposes a high-performance binary protocol as well as HTTP and WebSockets APIs for both event production and consumption.
 
 Designed around the concept of a Commit Log as popularized by projects like Apache Kafka or Apache Pulsar, Styx provides durable storage and atomicity on tail-able event logs.
 
