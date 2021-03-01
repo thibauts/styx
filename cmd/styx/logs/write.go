@@ -77,7 +77,7 @@ func WriteLog(args []string) {
 	}
 
 	tcpWriter.HandleError(func(err error) {
-		cmd.DisplayError(err)
+		// cmd.DisplayError(err)
 	})
 
 	var reader recio.Reader
