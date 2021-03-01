@@ -7,16 +7,6 @@
 // Business Source License, use of this software will be governed by the
 // Apache License, Version 2.0, as published by the Apache Foundation.
 
-//
-// TODO
-// - Intercepter l'erreur fichier fermé dans reader et writer en cas de Close asynchrone.
-// - Déplacer les logiques de backup et de restore dans un fichier dédié ?
-// - Tester les perfs avec un record sous forme de struct.
-// - Possibilité de créer des writers et readers pendant la fermeture du log (ou après).
-// - Appeler releaseWriterLock en cas d'échec à la création du LogWriter.
-// - La liste de readers est mutée par unregisterReader pendant le forceReadersClose.
-// - Grouper les fonctions qui utilisent stateLock dans le LogWriter ?
-//
 package log
 
 import (
@@ -29,9 +19,9 @@ import (
 	"sync"
 	"time"
 
-	"gitlab.com/dataptive/styx/clock"
-	"gitlab.com/dataptive/styx/lockfile"
-	"gitlab.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/clock"
+	"github.com/dataptive/styx/lockfile"
+	"github.com/dataptive/styx/recio"
 )
 
 const (

@@ -18,10 +18,10 @@ import (
 	"net/url"
 	"strconv"
 
-	"gitlab.com/dataptive/styx/api"
-	"gitlab.com/dataptive/styx/api/tcp"
-	"gitlab.com/dataptive/styx/log"
-	"gitlab.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/api"
+	"github.com/dataptive/styx/api/tcp"
+	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/recio"
 
 	"github.com/gorilla/schema"
 )

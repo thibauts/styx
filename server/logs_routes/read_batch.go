@@ -15,12 +15,12 @@ import (
 	"strconv"
 	"time"
 
-	"gitlab.com/dataptive/styx/api"
-	"gitlab.com/dataptive/styx/clock"
-	"gitlab.com/dataptive/styx/log"
-	"gitlab.com/dataptive/styx/logger"
-	"gitlab.com/dataptive/styx/logman"
-	"gitlab.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/api"
+	"github.com/dataptive/styx/clock"
+	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/logger"
+	"github.com/dataptive/styx/logman"
+	"github.com/dataptive/styx/recio"
 
 	"github.com/gorilla/mux"
 )

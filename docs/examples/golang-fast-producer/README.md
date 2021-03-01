@@ -9,7 +9,7 @@ Usage
 Install dependencies
 
 ```bash
-go get gitlab.com/dataptive/styx
+go get github.com/dataptive/styx
 ```
 
 Ensure Styx is running and create a "fast" log

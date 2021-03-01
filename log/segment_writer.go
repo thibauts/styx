@@ -14,7 +14,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"gitlab.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/recio"
 )
 
 type segmentWriter struct {

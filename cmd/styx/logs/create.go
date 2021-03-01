@@ -10,10 +10,10 @@
 package logs
 
 import (
-	"gitlab.com/dataptive/styx/api"
-	"gitlab.com/dataptive/styx/client"
-	"gitlab.com/dataptive/styx/cmd"
-	"gitlab.com/dataptive/styx/log"
+	"github.com/dataptive/styx/api"
+	"github.com/dataptive/styx/client"
+	"github.com/dataptive/styx/cmd"
+	"github.com/dataptive/styx/log"
 
 	"github.com/spf13/pflag"
 )

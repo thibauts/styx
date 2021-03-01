@@ -12,8 +12,8 @@ package main
 import (
 	"os"
 
-	"gitlab.com/dataptive/styx/cmd"
-	"gitlab.com/dataptive/styx/cmd/styx/logs"
+	"github.com/dataptive/styx/cmd"
+	"github.com/dataptive/styx/cmd/styx/logs"
 )
 
 const (

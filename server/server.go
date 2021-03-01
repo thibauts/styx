@@ -19,11 +19,11 @@ import (
 	"syscall"
 	"time"
 
-	"gitlab.com/dataptive/styx/lockfile"
-	"gitlab.com/dataptive/styx/logger"
-	"gitlab.com/dataptive/styx/logman"
-	"gitlab.com/dataptive/styx/metrics"
-	"gitlab.com/dataptive/styx/server/config"
+	"github.com/dataptive/styx/lockfile"
+	"github.com/dataptive/styx/logger"
+	"github.com/dataptive/styx/logman"
+	"github.com/dataptive/styx/metrics"
+	"github.com/dataptive/styx/server/config"
 )
 
 var (

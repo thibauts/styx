@@ -13,7 +13,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"gitlab.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/recio"
 )
 
 type Fanin struct {

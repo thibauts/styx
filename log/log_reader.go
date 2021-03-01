@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"gitlab.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/recio"
 )
 
 type LogReader struct {

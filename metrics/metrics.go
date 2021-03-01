@@ -10,10 +10,10 @@
 package metrics
 
 import (
-	"gitlab.com/dataptive/styx/log"
+	"github.com/dataptive/styx/log"
 
-	"gitlab.com/dataptive/styx/metrics/prometheus"
-	"gitlab.com/dataptive/styx/metrics/statsd"
+	"github.com/dataptive/styx/metrics/prometheus"
+	"github.com/dataptive/styx/metrics/statsd"
 )
 
 type Reporter interface {

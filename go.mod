@@ -1,4 +1,4 @@
-module gitlab.com/dataptive/styx
+module github.com/dataptive/styx
 
 go 1.15
 

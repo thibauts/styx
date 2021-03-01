@@ -13,8 +13,8 @@ import (
 	"fmt"
 	"time"
 
-	"gitlab.com/dataptive/styx/client"
-	"gitlab.com/dataptive/styx/cmd"
+	"github.com/dataptive/styx/client"
+	"github.com/dataptive/styx/cmd"
 
 	"github.com/spf13/pflag"
 )

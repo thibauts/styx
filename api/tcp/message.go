@@ -14,8 +14,8 @@ import (
 	"errors"
 	"io"
 
-	"gitlab.com/dataptive/styx/log"
-	"gitlab.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/recio"
 )
 
 const (

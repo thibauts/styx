@@ -12,7 +12,7 @@ package logs_routes
 import (
 	"net/http"
 
-	"gitlab.com/dataptive/styx/api"
+	"github.com/dataptive/styx/api"
 )
 
 func (lr *LogsRouter) ListHandler(w http.ResponseWriter, r *http.Request) {

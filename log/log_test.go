@@ -15,7 +15,7 @@ import (
 	"testing"
 	"time"
 
-	"gitlab.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/recio"
 )
 
 // Benchmarks writes of records of varying sizes to a LogWriter.

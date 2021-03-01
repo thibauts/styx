@@ -12,7 +12,7 @@ package log
 import (
 	"sync"
 
-	"gitlab.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/recio"
 )
 
 type SyncProgress struct {

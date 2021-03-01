@@ -14,9 +14,9 @@ import (
 	"net/http"
 	"time"
 
-	"gitlab.com/dataptive/styx/api"
-	"gitlab.com/dataptive/styx/logger"
-	"gitlab.com/dataptive/styx/logman"
+	"github.com/dataptive/styx/api"
+	"github.com/dataptive/styx/logger"
+	"github.com/dataptive/styx/logman"
 
 	"github.com/gorilla/mux"
 )

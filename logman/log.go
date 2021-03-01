@@ -15,9 +15,9 @@ import (
 	"regexp"
 	"sync"
 
-	"gitlab.com/dataptive/styx/log"
-	"gitlab.com/dataptive/styx/metrics"
-	"gitlab.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/metrics"
+	"github.com/dataptive/styx/recio"
 )
 
 type LogStatus string

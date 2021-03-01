@@ -12,8 +12,8 @@ package statsd
 import (
 	"fmt"
 
-	"gitlab.com/dataptive/styx/log"
-	"gitlab.com/dataptive/styx/logger"
+	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/logger"
 )
 
 const (

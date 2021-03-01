@@ -15,9 +15,9 @@ import (
 	"path/filepath"
 	"sync"
 
-	"gitlab.com/dataptive/styx/logger"
-	"gitlab.com/dataptive/styx/log"
-	"gitlab.com/dataptive/styx/metrics"
+	"github.com/dataptive/styx/logger"
+	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/metrics"
 )
 
 var (

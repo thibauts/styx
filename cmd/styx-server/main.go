@@ -10,14 +10,12 @@
 package main
 
 import (
-	// "fmt"
 	"os"
-	// "strings"
 
-	"gitlab.com/dataptive/styx/cmd"
-	"gitlab.com/dataptive/styx/logger"
-	"gitlab.com/dataptive/styx/server"
-	"gitlab.com/dataptive/styx/server/config"
+	"github.com/dataptive/styx/cmd"
+	"github.com/dataptive/styx/logger"
+	"github.com/dataptive/styx/server"
+	"github.com/dataptive/styx/server/config"
 
 	"github.com/spf13/pflag"
 )

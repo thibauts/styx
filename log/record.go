@@ -13,7 +13,7 @@ import (
 	"encoding/binary"
 	"errors"
 
-	"gitlab.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/recio"
 )
 
 const (

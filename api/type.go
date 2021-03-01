@@ -12,8 +12,8 @@ package api
 import (
 	"errors"
 
-	"gitlab.com/dataptive/styx/log"
-	"gitlab.com/dataptive/styx/logman"
+	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/logman"
 )
 
 const (

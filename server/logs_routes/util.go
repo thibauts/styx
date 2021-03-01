@@ -15,7 +15,7 @@ import (
 	"net/http"
 	"strings"
 
-	"gitlab.com/dataptive/styx/api"
+	"github.com/dataptive/styx/api"
 
 	"github.com/gorilla/websocket"
 )

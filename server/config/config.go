@@ -10,9 +10,9 @@
 package config
 
 import (
-	"gitlab.com/dataptive/styx/logman"
-	"gitlab.com/dataptive/styx/metrics"
-	"gitlab.com/dataptive/styx/metrics/statsd"
+	"github.com/dataptive/styx/logman"
+	"github.com/dataptive/styx/metrics"
+	"github.com/dataptive/styx/metrics/statsd"
 
 	"github.com/BurntSushi/toml"
 )

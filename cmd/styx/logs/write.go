@@ -14,11 +14,11 @@ import (
 	"io"
 	"os"
 
-	"gitlab.com/dataptive/styx/client"
-	"gitlab.com/dataptive/styx/cmd"
-	"gitlab.com/dataptive/styx/log"
-	"gitlab.com/dataptive/styx/recio"
-	"gitlab.com/dataptive/styx/recio/recioutil"
+	"github.com/dataptive/styx/client"
+	"github.com/dataptive/styx/cmd"
+	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/recio/recioutil"
 
 	"github.com/spf13/pflag"
 )
