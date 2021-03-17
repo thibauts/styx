@@ -14,6 +14,7 @@ import (
 
 	"github.com/dataptive/styx/cmd"
 	"github.com/dataptive/styx/cmd/styx/logs"
+	"github.com/dataptive/styx/cmd/styx/benchmark"
 )
 
 const (
@@ -23,10 +24,11 @@ Usage: styx COMMAND
 A command line interface (CLI) for the Styx API.
 
 Commands:
-	logs  Manage logs
+	logs 		Manage logs
+	benchmark	Run benchmarks
 
 Global Options:
-	-f, --format string	Output format [text|json] (default "text")
+	-f, --format string 	Output format [text|json] (default "text")
 	-H, --host string 	Server to connect to (default "http://localhost:7123")
 	-h, --help 		Display help
 `
@@ -97,6 +99,12 @@ func main() {
 		default:
 			cmd.DisplayUsage(cmd.MisuseCode, logsUsage)
 		}
+
+	case "benchmark":
+
+		args = args[1:]
+
+		benchmark.RunBenchmark(args)
 
 	case "--help":
 		cmd.DisplayUsage(cmd.SuccessCode, cliUsage)
