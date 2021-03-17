@@ -31,6 +31,19 @@ const (
 	readBufferSize  = 1 << 20 // 1MB
 )
 
+var (
+	DefaultLogConfig = api.LogConfig{
+		MaxRecordSize:   1 << 20, // 1MB
+		IndexAfterSize:  1 << 20, // 1MB
+		SegmentMaxCount: -1,
+		SegmentMaxSize:  1 << 30, // 1GB
+		SegmentMaxAge:   -1,
+		LogMaxCount:     -1,
+		LogMaxSize:      -1,
+		LogMaxAge:       -1,
+	}
+)
+
 type RecordsWriterHandler func(w recio.Writer) (err error)
 type RecordsReaderHandler func(w recio.Reader) (err error)
 
