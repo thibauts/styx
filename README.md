@@ -182,6 +182,25 @@ Global Options:
         -h, --help                      Display help
 ```
 
+### Benchmarking
+
+Use the `benchmark` command from the CLI to run a benchmark on your own server.
+
+The command will launch a batch of produce and consume tasks with various payload sizes and produce a report. You should have about 10GB of free storage for everything to run smoothly. Used disk space will automatically be freed when the benchmark ends.
+
+Although you'll get better numbers when running outside of docker, the following commands will give you a quick estimate of what you can expect from Styx in your own context.
+
+```bash
+$ docker run --name styx -d -p 7123:7123 dataptive/styx
+$ docker exec styx styx benchmark
+```
+
+In case you've built Styx from source, simply run
+
+```bash
+$ styx benchmark
+```
+
 ## Documentation
 
 The documentation is a work in progress, please open an issue if you find something unclear or missing.
