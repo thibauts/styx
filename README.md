@@ -245,5 +245,5 @@ You're more than welcome to open issues should you encounter any bug or instabil
 
 ## Community
 
-If you wish to join our Slack, request an invite at hello@dataptive.io
+You're welcome to join our [Slack](https://join.slack.com/t/dataptive/shared_invite/zt-mzl99jf9-zaFiIVYbZRN6m2nqkcgZmg) to discuss the project or ask for help !
 
