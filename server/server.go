@@ -26,6 +26,10 @@ import (
 	"github.com/dataptive/styx/server/config"
 )
 
+const (
+	Version = "0.0.1"
+)
+
 var (
 	ErrShutdownTimedOut = errors.New("server: shutdown timeout exceeded")
 )
@@ -49,7 +53,7 @@ func NewServer(config config.Config) (s *Server, err error) {
 
 func (s *Server) Run() (err error) {
 
-	logger.Info("Starting Styx server")
+	logger.Infof("Starting Styx server version %s", Version)
 
 	err = s.acquireExecutionLock()
 	if err != nil {
