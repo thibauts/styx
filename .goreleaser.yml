@@ -45,7 +45,7 @@ checksum:
   name_template: "{{ .ProjectName }}-{{ .Version }}-checksums.txt"
 
 dockers:
-  # Build docker image
+  # Build and publish docker image
   -
     dockerfile: Dockerfile.goreleaser
     image_templates:
@@ -53,10 +53,11 @@ dockers:
       - "dataptive/styx:{{ .Version }}"
     extra_files:
       - config.toml
-    skip_push: true
 
 release:
-  disable: true
+  # Create release draft on github
+  github:
+    owner: dataptive
+    name: styx
 
-changelog:
-  skip: true
+  draft: true
