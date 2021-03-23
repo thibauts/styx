@@ -1,15 +1,24 @@
-PLATFORMS=linux darwin
+PLATFORMS := linux darwin
+VERSION := $(shell git describe --tags --abbrev=0)
 
-release: $(PLATFORMS)
+release: $(PLATFORMS) docker-build
 
 $(PLATFORMS):
-	GOOS=$@ GOARCH=amd64 CGO_ENABLED=0 go build -o styx-server ./cmd/styx-server
-	GOOS=$@ GOARCH=amd64 CGO_ENABLED=0 go build -o styx ./cmd/styx
-	mkdir data
-	tar czf styx-$@-amd64.tar.gz styx-server styx data config.toml LICENSE
-	rm -rf styx-server styx data
+	mkdir -p release
+	GOOS=$@ GOARCH=amd64 CGO_ENABLED=0 go build -o release/styx-server ./cmd/styx-server
+	GOOS=$@ GOARCH=amd64 CGO_ENABLED=0 go build -o release/styx ./cmd/styx
+	mkdir -p release/data
+	tar czf release/styx-$(VERSION)-$@-amd64.tar.gz release/styx-server release/styx release/data config.toml LICENSE
+	rm -rf release/styx-server release/styx release/data
+
+docker-build:
+	docker build -t dataptive/styx:$(VERSION) -t dataptive/styx:latest .
+
+docker-push:
+	docker push dataptive/styx:$(VERSION)
+	docker push dataptive/styx:latest
 
 clean:
-	rm styx-*-amd64.tar.gz
+	rm -rf release
 
-.PHONY: release clean $(PLATFORMS)
+.PHONY: release clean $(PLATFORMS) docker-build docker-push
