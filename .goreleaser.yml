@@ -1,0 +1,50 @@
+project_name: styx
+
+builds:
+  # Build styx-server
+  -
+    id: styx-server
+    main: ./cmd/styx-server/main.go
+    binary: styx-server
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+
+  # Build styx CLI
+  -
+    id: styx
+    main: ./cmd/styx/main.go
+    binary: styx
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+
+archives:
+  # Release archive
+  -
+    builds:
+      - styx-server
+      - styx
+    format: tar.gz
+    name_template: "{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+    wrap_in_directory: true
+    files:
+      - LICENSE
+      - config.toml
+
+checksum:
+  name_template: "{{ .ProjectName }}-{{ .Version }}-checksums.txt"
+
+snapshot:
+  name_template: "{{ .Tag }}"
+
+changelog:
+  skip: true
