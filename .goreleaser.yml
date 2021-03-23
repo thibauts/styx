@@ -28,7 +28,7 @@ builds:
       - amd64
 
 archives:
-  # Release archive
+  # Create release archives
   -
     builds:
       - styx-server
@@ -41,10 +41,22 @@ archives:
       - config.toml
 
 checksum:
+  # Create release checksums
   name_template: "{{ .ProjectName }}-{{ .Version }}-checksums.txt"
 
-snapshot:
-  name_template: "{{ .Tag }}"
+dockers:
+  # Build docker image
+  -
+    dockerfile: Dockerfile.goreleaser
+    image_templates:
+      - "dataptive/styx:latest"
+      - "dataptive/styx:{{ .Version }}"
+    extra_files:
+      - config.toml
+    skip_push: true
+
+release:
+  disable: true
 
 changelog:
   skip: true
