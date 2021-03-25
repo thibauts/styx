@@ -1,0 +1,50 @@
+################################################################################
+#                               STYX CONFIG FILE                               #
+################################################################################
+
+# Path of styx PID file
+pid_file = "/var/run/styx/styx.pid"
+
+# IP:port to bind to
+bind_address = "0.0.0.0:7123"
+
+# Number of seconds styx waits for graceful shutdown completion
+shutdown_timeout = 3
+
+# Allowed origins for CORS requests
+cors_allowed_origins = ["*"]
+
+# Read and write buffer sizes in bytes for HTTP record production and consumption
+# requests
+http_read_buffer_size = 1048576
+http_write_buffer_size = 1048576
+
+# Read and write buffer sizes in bytes for Styx protocol connections
+tcp_read_buffer_size = 1048576
+tcp_write_buffer_size = 1048576
+
+# Heartbeat timeout for Styx protocol connections
+tcp_timeout = 30
+
+# Read and write buffer sizes in bytes for Websocket connections
+websocket_read_buffer_size = 1048576
+websocket_write_buffer_size = 1048576
+
+################################################################################
+[log_manager]
+
+# Path where log data should be stored
+data_directory = "/var/lib/styx"
+
+# Read and write buffer sizes in bytes used by the storage engine
+read_buffer_size = 1048576
+write_buffer_size = 1048576
+
+################################################################################
+#[metrics.statsd]
+
+# Address to send Statsd metrics to
+#address = "127.0.0.1:8125"
+
+# Prefix used on Statsd metrics
+#prefix = "styx" 

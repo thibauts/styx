@@ -1,0 +1,16 @@
+[Unit]
+Description=Simple, high-performance event streaming platform
+After=network-online.target
+
+[Service]
+Type=simple
+User=styx
+Group=styx
+ExecStart=/usr/local/bin/styx-server --config=/etc/styx/styx.toml --log-level=DEBUG
+Restart=on-failure
+PIDFile=/var/run/styx/styx.pid
+LimitNOFILE=1048576
+
+[Install]
+WantedBy=multi-user.target
+Alias=styx.service

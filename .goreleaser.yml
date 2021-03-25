@@ -27,6 +27,41 @@ builds:
     goarch:
       - amd64
 
+nfpms:
+  # Create packages
+  -
+    builds:
+      - styx-server
+      - styx
+
+    vendor: Dataptive
+    homepage: https://dataptive.io/
+    maintainer: Thibaut Séguy <thibaut.seguy@gmail.com>
+    description: Simple, high-performance event streaming platform
+
+    file_name_template: "{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+
+    formats:
+      - deb
+
+    scripts:
+      postinstall: scripts/postinstall.sh
+      preremove: scripts/preremove.sh
+
+    empty_folders:
+      - /var/lib/styx
+      - /var/run/styx
+
+    contents:
+      - src: config.linux.toml
+        dst: /etc/styx/styx.toml
+        type: config
+      - src: scripts/styx.service
+        dst: /lib/systemd/system/styx.service
+
+# snapshot:
+#   name_template: "{{ .Version }}"
+
 archives:
   # Create release archives
   -
