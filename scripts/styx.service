@@ -1,5 +1,5 @@
 [Unit]
-Description=Simple, high-performance event streaming platform
+Description=Styx server
 After=network-online.target
 
 [Service]
