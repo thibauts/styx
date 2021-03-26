@@ -37,7 +37,7 @@ type LogManager struct {
 
 func NewLogManager(config Config, reporter metrics.Reporter) (lm *LogManager, err error) {
 
-	logger.Debugf("logman: starting log manager (data_directory=%s)", config.DataDirectory)
+	logger.Infof("logman: starting log manager (data_directory=%s)", config.DataDirectory)
 
 	lm = &LogManager{
 		config: config,
@@ -73,7 +73,7 @@ func NewLogManager(config Config, reporter metrics.Reporter) (lm *LogManager, er
 
 func (lm *LogManager) Close() (err error) {
 
-	logger.Debugf("logman: closing log manager")
+	logger.Infof("logman: stopping log manager")
 
 	lm.logsLock.Lock()
 	defer lm.logsLock.Unlock()
@@ -109,6 +109,8 @@ func (lm *LogManager) CreateLog(name string, logConfig log.Config) (ml *Log, err
 
 	lm.logsLock.Lock()
 	defer lm.logsLock.Unlock()
+
+	logger.Infof("logman: creating log \"%s\"", name)
 
 	if lm.closed {
 		return nil, ErrClosed
@@ -150,6 +152,8 @@ func (lm *LogManager) DeleteLog(name string) (err error) {
 
 	lm.logsLock.Lock()
 	defer lm.logsLock.Unlock()
+
+	logger.Infof("logman: deleting log \"%s\"", name)
 
 	if lm.closed {
 		return ErrClosed
@@ -196,6 +200,8 @@ func (lm *LogManager) TruncateLog(name string) (err error) {
 
 	lm.logsLock.Lock()
 	defer lm.logsLock.Unlock()
+
+	logger.Infof("logman: truncating log \"%s\"", name)
 
 	if lm.closed {
 		return ErrClosed
@@ -255,6 +261,8 @@ func (lm *LogManager) RestoreLog(name string, r io.Reader) (err error) {
 	if !valid {
 		return ErrInvalidName
 	}
+
+	logger.Infof("logman: restoring log \"%s\"", name)
 
 	pathname := filepath.Join(lm.config.DataDirectory, name)
 

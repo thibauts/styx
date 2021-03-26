@@ -53,7 +53,7 @@ func NewServer(config config.Config) (s *Server, err error) {
 
 func (s *Server) Run() (err error) {
 
-	logger.Infof("Starting Styx server version %s", Version)
+	logger.Infof("server: starting Styx server version %s", Version)
 
 	err = s.acquireExecutionLock()
 	if err != nil {
@@ -63,7 +63,7 @@ func (s *Server) Run() (err error) {
 
 		s.clearExecutionLock()
 
-		logger.Warn("Detected server crash")
+		logger.Warn("server: detected server crash")
 
 		err = s.acquireExecutionLock()
 		if err != nil {
@@ -97,7 +97,7 @@ func (s *Server) Run() (err error) {
 
 		<-signalChan
 
-		logger.Info("Shutting down Styx server")
+		logger.Info("server: shutting down Styx server")
 
 		shutdownTimeout := time.Duration(s.config.ShutdownTimeout) * time.Second
 		ctx, cancel := context.WithTimeout(context.Background(), shutdownTimeout)
@@ -138,7 +138,7 @@ func (s *Server) Run() (err error) {
 		done <- struct{}{}
 	}()
 
-	logger.Infof("Listening on %s", s.config.BindAddress)
+	logger.Infof("server: listening for client connections on %s", s.config.BindAddress)
 
 	err = server.ListenAndServe()
 	if err != nil && err != http.ErrServerClosed {
