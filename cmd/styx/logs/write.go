@@ -38,13 +38,11 @@ Global Options:
 	-h, --help 		Display help
 `
 
-func WriteLog(args []string) {
+const (
+	readBufferSize = 1 << 20 // 1MB
+)
 
-	const (
-		readBufferSize  = 1 << 20 // 1MB
-		writeBufferSize = 1 << 20 // 1MB
-		timeout         = 100
-	)
+func WriteLog(args []string) {
 
 	writeOpts := pflag.NewFlagSet("logs write", pflag.ContinueOnError)
 	unbuffered := writeOpts.BoolP("unbuffered", "u", false, "")
@@ -65,20 +63,19 @@ func WriteLog(args []string) {
 		cmd.DisplayUsage(cmd.SuccessCode, logsWriteUsage)
 	}
 
-	httpClient := client.NewClient(*host)
-
 	if writeOpts.NArg() != 1 {
 		cmd.DisplayUsage(cmd.MisuseCode, logsWriteUsage)
 	}
 
-	tcpWriter, err := httpClient.WriteRecordsTCP(writeOpts.Args()[0], recio.ModeAuto, writeBufferSize, timeout)
+	name := writeOpts.Args()[0]
+
+	c := client.NewClient(*host)
+
+	producer, err := c.NewProducer(name, client.DefaultProducerOptions)
 	if err != nil {
 		cmd.DisplayError(err)
 	}
-
-	tcpWriter.HandleError(func(err error) {
-		// cmd.DisplayError(err)
-	})
+	defer producer.Close()
 
 	var reader recio.Reader
 	var decoder recio.Decoder
@@ -123,25 +120,20 @@ func WriteLog(args []string) {
 			record = (*log.Record)(decoder.(*recioutil.Line))
 		}
 
-		_, err = tcpWriter.Write(record)
+		_, err = producer.Write(record)
 		if err != nil {
 			cmd.DisplayError(err)
 		}
 
 		if mustFlush {
-			err = tcpWriter.Flush()
+			err = producer.Flush()
 			if err != nil {
 				cmd.DisplayError(err)
 			}
 		}
 	}
 
-	err = tcpWriter.Flush()
-	if err != nil {
-		cmd.DisplayError(err)
-	}
-
-	err = tcpWriter.Close()
+	err = producer.Flush()
 	if err != nil {
 		cmd.DisplayError(err)
 	}

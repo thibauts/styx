@@ -14,7 +14,6 @@ import (
 	"io"
 	"os"
 
-	"github.com/dataptive/styx/api"
 	"github.com/dataptive/styx/client"
 	"github.com/dataptive/styx/cmd"
 	"github.com/dataptive/styx/log"
@@ -43,13 +42,11 @@ Global Options:
 	-h, --help 		Display help
 `
 
-func ReadLog(args []string) {
+const (
+	writeBufferSize = 1 << 20 // 1MB
+)
 
-	const (
-		readBufferSize  = 1 << 20 // 1MB
-		writeBufferSize = 1 << 20 // 1MB
-		timeout         = 100
-	)
+func ReadLog(args []string) {
 
 	readOpts := pflag.NewFlagSet("read", pflag.ContinueOnError)
 	whence := readOpts.StringP("whence", "w", string(log.SeekOrigin), "")
@@ -78,16 +75,11 @@ func ReadLog(args []string) {
 		cmd.DisplayUsage(cmd.MisuseCode, logsReadUsage)
 	}
 
-	httpClient := client.NewClient(*host)
+	name := readOpts.Args()[0]
 
-	params := api.ReadRecordsTCPParams{
-		Whence:   log.Whence(*whence),
-		Position: *position,
-		Count: *count,
-		Follow: *follow,
-	}
+	c := client.NewClient(*host)
 
-	logInfo, err := httpClient.GetLog(readOpts.Args()[0])
+	logInfo, err := c.GetLog(name)
 	if err != nil {
 		cmd.DisplayError(err)
 	}
@@ -96,10 +88,18 @@ func ReadLog(args []string) {
 		count = &logInfo.RecordCount
 	}
 
-	tcpReader, err := httpClient.ReadRecordsTCP(readOpts.Args()[0], params, recio.ModeAuto, readBufferSize, timeout)
+	params := client.ConsumerParams{
+		Whence:   client.Whence(*whence),
+		Position: *position,
+		Count:    *count,
+		Follow:   *follow,
+	}
+
+	consumer, err := c.NewConsumer(name, params, client.DefaultConsumerOptions)
 	if err != nil {
 		cmd.DisplayError(err)
 	}
+	defer consumer.Close()
 
 	var writer recio.Writer
 	var encoder recio.Encoder
@@ -125,6 +125,7 @@ func ReadLog(args []string) {
 	}
 
 	mustFlush := isTerm || *unbuffered
+
 	record := &log.Record{}
 	read := int64(0)
 	for {
@@ -132,7 +133,7 @@ func ReadLog(args []string) {
 			break
 		}
 
-		_, err := tcpReader.Read(record)
+		_, err := consumer.Read(record)
 		if err == io.EOF {
 			break
 		}
@@ -163,11 +164,6 @@ func ReadLog(args []string) {
 	}
 
 	err = bufferedWriter.Flush()
-	if err != nil {
-		cmd.DisplayError(err)
-	}
-
-	err = tcpReader.Close()
 	if err != nil {
 		cmd.DisplayError(err)
 	}
