@@ -33,41 +33,42 @@ func UpgradeTCP(w http.ResponseWriter) (c *net.TCPConn, err error) {
 		api.WriteError(w, http.StatusInternalServerError, err)
 		return nil, err
 	}
-	header := w.Header()
-	header.Add("Connection", "Upgrade")
-	header.Add("Upgrade", api.StyxProtocolString)
 
-	// api.WriteResponse(w, http.StatusSwitchingProtocols, nil)
-
-	// conn, bufrw, err := hj.Hijack()
-	// if err != nil {
-	// 	conn.Close()
-	// 	return nil, err
-	// }
-
-	// if bufrw.Reader.Buffered() > 0 {
-	// 	conn.Close()
-	// 	err := ErrDataSentBeforeUpgrade
-	// 	return nil, err
-	// }
-
-	// HTTP/1.1 101 Switching Protocols
-	// Connection: Upgrade
-	// Upgrade: styx/0
-	// Vary: Origin
-	// X-Styx-Timeout: 100
-	// Date: Fri, 12 Feb 2021 16:47:24 GMT
-
-	conn, _, err := hj.Hijack()
+	conn, bufrw, err := hj.Hijack()
 	if err != nil {
 		conn.Close()
 		return nil, err
 	}
 
-	response := "HTTP/1.1 101 Switching Protocols\r\nConnection: Upgrade\r\nUpgrade: styx/0\r\nX-Styx-Timeout: 100\r\n\r\n"
-	conn.Write([]byte(response))
+	if bufrw.Reader.Buffered() > 0 {
+		conn.Close()
+		err := ErrDataSentBeforeUpgrade
+		return nil, err
+	}
 
-	return conn.(*net.TCPConn), nil
+	header := w.Header()
+	header.Add("Connection", "Upgrade")
+	header.Add("Upgrade", api.StyxProtocolString)
+
+	resp := http.Response{
+		Status: "101 Switching Protocols",
+		StatusCode: 101,
+		Proto: "HTTP/1.1",
+		ProtoMajor: 1,
+		ProtoMinor: 1,
+		Body: nil,
+		Header: header,
+	}
+
+	err = resp.Write(conn)
+	if err != nil {
+		conn.Close()
+		return nil, err
+	}
+
+	tcpConn := conn.(*net.TCPConn)
+
+	return tcpConn, nil
 }
 
 func UpgradeWebsocket(w http.ResponseWriter, r *http.Request, allowedOrigins []string, readBufferSize int, writeBufferSize int)  (conn *websocket.Conn, err error) {

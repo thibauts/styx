@@ -10,6 +10,7 @@
 package client
 
 import (
+	"bufio"
 	"net"
 	"net/http"
 	"net/url"
@@ -76,9 +77,9 @@ func (c *Client) NewConsumer(name string, params ConsumerParams, options Consume
 		return nil, err
 	}
 
-	url := c.baseURL + "/logs/" + name + "/records?" + queryParams.Encode()
+	endpoint := c.baseURL + "/logs/" + name + "/records?" + queryParams.Encode()
 
-	req, err := http.NewRequest(http.MethodGet, url, nil)
+	req, err := http.NewRequest(http.MethodGet, endpoint, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -89,27 +90,24 @@ func (c *Client) NewConsumer(name string, params ConsumerParams, options Consume
 
 	var tcpConn *net.TCPConn
 
-	dial := func(network string, address string) (conn net.Conn, err error) {
-
-		conn, err = net.Dial(network, address)
-		if err != nil {
-			return nil, err
-		}
-
-		tcpConn = conn.(*net.TCPConn)
-
-		return conn, nil
+	u, err := url.Parse(endpoint)
+	if err != nil {
+		return nil, err
 	}
 
-	t := &http.Transport{
-		Dial: dial,
+	conn, err := net.Dial("tcp", u.Host)
+	if err != nil {
+		return nil, err
 	}
 
-	client := &http.Client{
-		Transport: t,
+	err = req.Write(conn)
+	if err != nil {
+		return nil, err
 	}
 
-	resp, err := client.Do(req)
+	br := bufio.NewReader(NewByteReader(conn))
+
+	resp, err := http.ReadResponse(br, req)
 	if err != nil {
 		return nil, err
 	}
@@ -128,6 +126,8 @@ func (c *Client) NewConsumer(name string, params ConsumerParams, options Consume
 			return nil, err
 		}
 	}
+
+	tcpConn = conn.(*net.TCPConn)
 
 	reader := tcp.NewTCPReader(tcpConn, options.WriteBufferSize, options.ReadBufferSize, options.ReadTimeout, remoteTimeout, options.IOMode)
 

@@ -10,8 +10,10 @@
 package client
 
 import (
+	"bufio"
 	"net"
 	"net/http"
+	"net/url"
 	"strconv"
 
 	"github.com/dataptive/styx/api"
@@ -58,27 +60,24 @@ func (c *Client) NewProducer(name string, options ProducerOptions) (p *Producer,
 
 	var tcpConn *net.TCPConn
 
-	dial := func(network string, address string) (conn net.Conn, err error) {
-
-		conn, err = net.Dial(network, address)
-		if err != nil {
-			return nil, err
-		}
-
-		tcpConn = conn.(*net.TCPConn)
-
-		return conn, nil
+	u, err := url.Parse(endpoint)
+	if err != nil {
+		return nil, err
 	}
 
-	t := &http.Transport{
-		Dial: dial,
+	conn, err := net.Dial("tcp", u.Host)
+	if err != nil {
+		return nil, err
 	}
 
-	client := &http.Client{
-		Transport: t,
+	err = req.Write(conn)
+	if err != nil {
+		return nil, err
 	}
 
-	resp, err := client.Do(req)
+	br := bufio.NewReader(NewByteReader(conn))
+
+	resp, err := http.ReadResponse(br, req)
 	if err != nil {
 		return nil, err
 	}
@@ -97,6 +96,8 @@ func (c *Client) NewProducer(name string, options ProducerOptions) (p *Producer,
 			return nil, err
 		}
 	}
+
+	tcpConn = conn.(*net.TCPConn)
 
 	writer := tcp.NewTCPWriter(tcpConn, options.WriteBufferSize, options.ReadBufferSize, options.ReadTimeout, remoteTimeout, options.IOMode)
 
