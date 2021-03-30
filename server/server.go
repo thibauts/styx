@@ -19,7 +19,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/dataptive/styx/lockfile"
+	"github.com/dataptive/styx/pkg/lockfile"
 	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/logman"
 	"github.com/dataptive/styx/metrics"
