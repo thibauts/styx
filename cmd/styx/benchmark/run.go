@@ -14,8 +14,6 @@ import (
 	"io"
 	"time"
 
-	"github.com/dataptive/styx/logger"
-
 	"github.com/dataptive/styx/client"
 	"github.com/dataptive/styx/cmd"
 	"github.com/dataptive/styx/log"
@@ -193,8 +191,6 @@ func benchmarkConsume(host string, name string, size int, count int) (err error)
 }
 
 func RunBenchmark(args []string) {
-
-	logger.SetLevel(logger.LevelInfo)
 
 	logName := "benchmark"
 
