@@ -20,7 +20,7 @@ import (
 	"time"
 
 	"github.com/dataptive/styx/lockfile"
-	"github.com/dataptive/styx/logger"
+	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/logman"
 	"github.com/dataptive/styx/metrics"
 	"github.com/dataptive/styx/server/config"

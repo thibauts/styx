@@ -15,7 +15,7 @@ import (
 	"time"
 
 	"github.com/dataptive/styx/api"
-	"github.com/dataptive/styx/logger"
+	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/logman"
 
 	"github.com/gorilla/mux"

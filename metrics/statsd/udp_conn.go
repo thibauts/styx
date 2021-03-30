@@ -14,7 +14,7 @@ import (
 	"time"
 	"sync"
 
-	"github.com/dataptive/styx/logger"
+	"github.com/dataptive/styx/pkg/logger"
 )
 
 var resolvePeriod = 10 * time.Minute

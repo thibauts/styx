@@ -15,7 +15,7 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/dataptive/styx/logger"
+	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/log"
 	"github.com/dataptive/styx/metrics"
 )

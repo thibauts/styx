@@ -13,7 +13,7 @@ import (
 	"os"
 
 	"github.com/dataptive/styx/cmd"
-	"github.com/dataptive/styx/logger"
+	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/server"
 	"github.com/dataptive/styx/server/config"
 

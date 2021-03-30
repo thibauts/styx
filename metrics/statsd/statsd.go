@@ -13,7 +13,7 @@ import (
 	"fmt"
 
 	"github.com/dataptive/styx/log"
-	"github.com/dataptive/styx/logger"
+	"github.com/dataptive/styx/pkg/logger"
 )
 
 const (
