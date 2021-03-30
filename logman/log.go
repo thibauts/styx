@@ -15,7 +15,7 @@ import (
 	"regexp"
 	"sync"
 
-	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/metrics"
 	"github.com/dataptive/styx/pkg/recio"
 )

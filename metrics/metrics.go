@@ -10,7 +10,7 @@
 package metrics
 
 import (
-	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/pkg/log"
 
 	"github.com/dataptive/styx/metrics/prometheus"
 	"github.com/dataptive/styx/metrics/statsd"

@@ -10,7 +10,7 @@
 package prometheus
 
 import (
-	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/pkg/log"
 
 	prom "github.com/prometheus/client_golang/prometheus"
 )

@@ -12,7 +12,7 @@ package statsd
 import (
 	"fmt"
 
-	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/pkg/logger"
 )
 

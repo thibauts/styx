@@ -12,7 +12,7 @@ package tcp
 import (
 	"net"
 
-	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/pkg/recio"
 )
 

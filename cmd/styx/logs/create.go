@@ -13,7 +13,7 @@ import (
 	"github.com/dataptive/styx/api"
 	"github.com/dataptive/styx/client"
 	"github.com/dataptive/styx/cmd"
-	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/pkg/log"
 
 	"github.com/spf13/pflag"
 )

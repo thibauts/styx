@@ -13,7 +13,7 @@ import (
 	"net/http"
 
 	"github.com/dataptive/styx/api"
-	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/logman"
 	"github.com/dataptive/styx/pkg/logger"
 )
