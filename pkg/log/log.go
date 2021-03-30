@@ -19,7 +19,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dataptive/styx/clock"
+	"github.com/dataptive/styx/pkg/clock"
 	"github.com/dataptive/styx/pkg/lockfile"
 	"github.com/dataptive/styx/pkg/recio"
 )

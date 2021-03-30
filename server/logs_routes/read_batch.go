@@ -16,17 +16,12 @@ import (
 	"time"
 
 	"github.com/dataptive/styx/api"
-	"github.com/dataptive/styx/clock"
 	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/logman"
 	"github.com/dataptive/styx/pkg/recio"
 
 	"github.com/gorilla/mux"
-)
-
-var (
-	now = clock.New(time.Second)
 )
 
 func (lr *LogsRouter) ReadBatchHandler(w http.ResponseWriter, r *http.Request) {
