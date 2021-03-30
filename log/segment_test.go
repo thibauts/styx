@@ -16,7 +16,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/pkg/recio"
 )
 
 // Benchmarks writes of records of varying sizes to a segmentWriter.

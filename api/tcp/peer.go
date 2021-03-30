@@ -15,7 +15,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/pkg/recio"
 )
 
 type ErrorHandler func(err error)

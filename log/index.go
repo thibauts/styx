@@ -12,7 +12,7 @@ package log
 import (
 	"encoding/binary"
 
-	"github.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/pkg/recio"
 )
 
 const (

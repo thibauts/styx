@@ -17,7 +17,7 @@ import (
 	"github.com/dataptive/styx/log"
 	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/logman"
-	"github.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/pkg/recio"
 
 	"github.com/gorilla/mux"
 )

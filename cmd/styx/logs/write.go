@@ -17,8 +17,8 @@ import (
 	"github.com/dataptive/styx/client"
 	"github.com/dataptive/styx/cmd"
 	"github.com/dataptive/styx/log"
-	"github.com/dataptive/styx/recio"
-	"github.com/dataptive/styx/recio/recioutil"
+	"github.com/dataptive/styx/pkg/recio"
+	"github.com/dataptive/styx/pkg/recio/recioutil"
 
 	"github.com/spf13/pflag"
 )

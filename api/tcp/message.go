@@ -15,7 +15,7 @@ import (
 	"io"
 
 	"github.com/dataptive/styx/log"
-	"github.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/pkg/recio"
 )
 
 const (

@@ -10,7 +10,7 @@
 package recioutil
 
 import (
-	"github.com/dataptive/styx/recio"
+	"github.com/dataptive/styx/pkg/recio"
 )
 
 var (
