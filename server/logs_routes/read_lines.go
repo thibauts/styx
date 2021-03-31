@@ -24,7 +24,7 @@ import (
 	"github.com/dataptive/styx/pkg/api"
 	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/pkg/logger"
-	"github.com/dataptive/styx/logman"
+	"github.com/dataptive/styx/internal/logman"
 	"github.com/dataptive/styx/pkg/recio"
 	"github.com/dataptive/styx/pkg/recio/recioutil"
 

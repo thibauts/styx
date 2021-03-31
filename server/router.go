@@ -18,7 +18,7 @@ import (
 	"net/http"
 
 	"github.com/dataptive/styx/pkg/api"
-	"github.com/dataptive/styx/logman"
+	"github.com/dataptive/styx/internal/logman"
 	"github.com/dataptive/styx/server/config"
 	"github.com/dataptive/styx/server/logs_routes"
 

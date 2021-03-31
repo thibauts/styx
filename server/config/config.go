@@ -15,7 +15,7 @@
 package config
 
 import (
-	"github.com/dataptive/styx/logman"
+	"github.com/dataptive/styx/internal/logman"
 	"github.com/dataptive/styx/metrics"
 	"github.com/dataptive/styx/metrics/statsd"
 
