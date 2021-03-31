@@ -258,10 +258,6 @@ The documentation is a work in progress, please open an issue if you find someth
 
 TODO !
 
-## License
-
-Styx is published under an Apache 2.0+BSL [LICENSE](LICENSE). The BSL part is meant to prevent cloud providers from selling Styx as a service at zero cost. Apart from that, you should be safe to use it as you see fit, for example as a service inside your company, or as a service in a value-added product you are distributing or selling.
-
 ## Contributing
 
 You're more than welcome to open issues should you encounter any bug or instability in the code. Feature suggestions are welcome. We may restrict PRs until we have setup a CLA.
