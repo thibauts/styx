@@ -18,8 +18,8 @@ import (
 	"os"
 
 	"github.com/dataptive/styx/cmd"
-	"github.com/dataptive/styx/cmd/styx/logs"
 	"github.com/dataptive/styx/cmd/styx/benchmark"
+	"github.com/dataptive/styx/cmd/styx/logs"
 )
 
 const (

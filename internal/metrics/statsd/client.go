@@ -64,7 +64,7 @@ func (c *Client) DecrCounter(name string, count int64) (err error) {
 // Time send a statsd timing
 func (c *Client) Time(name string, duration time.Duration) (err error) {
 
-	return c.send(name, "%d|ms", int64(duration.Seconds() * 1000))
+	return c.send(name, "%d|ms", int64(duration.Seconds()*1000))
 	if err != nil {
 		return err
 	}

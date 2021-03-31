@@ -23,21 +23,20 @@ import (
 )
 
 type TOMLConfig struct {
-	PIDFile                string                `toml:"pid_file"`
-	BindAddress            string                `toml:"bind_address"`
-	ShutdownTimeout        int                   `toml:"shutdown_timeout"`
-	CORSAllowedOrigins     []string              `toml:"cors_allowed_origins"`
-	HTTPReadBufferSize     int                   `toml:"http_read_buffer_size"`
-	HTTPWriteBufferSize    int                   `toml:"http_write_buffer_size"`
-	TCPReadBufferSize      int                   `toml:"tcp_read_buffer_size"`
-	TCPWriteBufferSize     int                   `toml:"tcp_write_buffer_size"`
-	WSReadBufferSize       int                   `toml:"websocket_read_buffer_size"`
-	WSWriteBufferSize      int                   `toml:"websocket_write_buffer_size"`
-	TCPTimeout             int                   `toml:"tcp_timeout"`
-	LogManager             TOMLLogManagerConfig  `toml:"log_manager"`
-	Metrics                TOMLMetricsConfig     `toml:"metrics"`
+	PIDFile             string               `toml:"pid_file"`
+	BindAddress         string               `toml:"bind_address"`
+	ShutdownTimeout     int                  `toml:"shutdown_timeout"`
+	CORSAllowedOrigins  []string             `toml:"cors_allowed_origins"`
+	HTTPReadBufferSize  int                  `toml:"http_read_buffer_size"`
+	HTTPWriteBufferSize int                  `toml:"http_write_buffer_size"`
+	TCPReadBufferSize   int                  `toml:"tcp_read_buffer_size"`
+	TCPWriteBufferSize  int                  `toml:"tcp_write_buffer_size"`
+	WSReadBufferSize    int                  `toml:"websocket_read_buffer_size"`
+	WSWriteBufferSize   int                  `toml:"websocket_write_buffer_size"`
+	TCPTimeout          int                  `toml:"tcp_timeout"`
+	LogManager          TOMLLogManagerConfig `toml:"log_manager"`
+	Metrics             TOMLMetricsConfig    `toml:"metrics"`
 }
-
 
 type TOMLLogManagerConfig struct {
 	DataDirectory   string `toml:"data_directory"`
@@ -46,29 +45,29 @@ type TOMLLogManagerConfig struct {
 }
 
 type TOMLMetricsConfig struct {
-	Statsd     *TOMLStatsdConfig `toml:"statsd"`
+	Statsd *TOMLStatsdConfig `toml:"statsd"`
 }
 
 type TOMLStatsdConfig struct {
-	Protocol      string `toml:"protocol"`
-	Address       string `toml:"address"`
-	Prefix        string `toml:"prefix"`
+	Protocol string `toml:"protocol"`
+	Address  string `toml:"address"`
+	Prefix   string `toml:"prefix"`
 }
 
 type Config struct {
-	PIDFile                string
-	BindAddress            string
-	ShutdownTimeout        int
-	CORSAllowedOrigins     []string
-	HTTPReadBufferSize     int
-	HTTPWriteBufferSize    int
-	TCPReadBufferSize      int
-	TCPWriteBufferSize     int
-	WSReadBufferSize       int
-	WSWriteBufferSize      int
-	TCPTimeout             int
-	LogManager             logman.Config
-	Metrics                metrics.Config
+	PIDFile             string
+	BindAddress         string
+	ShutdownTimeout     int
+	CORSAllowedOrigins  []string
+	HTTPReadBufferSize  int
+	HTTPWriteBufferSize int
+	TCPReadBufferSize   int
+	TCPWriteBufferSize  int
+	WSReadBufferSize    int
+	WSWriteBufferSize   int
+	TCPTimeout          int
+	LogManager          logman.Config
+	Metrics             metrics.Config
 }
 
 func Load(path string) (c Config, err error) {

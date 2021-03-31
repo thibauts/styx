@@ -21,8 +21,8 @@ import (
 	"sync"
 
 	"github.com/dataptive/styx/internal/metrics"
-	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/pkg/log"
+	"github.com/dataptive/styx/pkg/logger"
 )
 
 var (
@@ -45,7 +45,7 @@ func NewLogManager(config Config, reporter metrics.Reporter) (lm *LogManager, er
 	logger.Infof("logman: starting log manager (data_directory=%s)", config.DataDirectory)
 
 	lm = &LogManager{
-		config: config,
+		config:   config,
 		reporter: reporter,
 	}
 

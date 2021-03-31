@@ -10,8 +10,8 @@ import (
 )
 
 type Event struct {
-	Timestamp int64 `json:"timestamp"`
-	Payload string `json:"payload"`
+	Timestamp int64  `json:"timestamp"`
+	Payload   string `json:"payload"`
 }
 
 func main() {
@@ -27,7 +27,7 @@ func main() {
 	for {
 		event := Event{
 			Timestamp: time.Now().Unix(),
-			Payload: "Hello, Styx !",
+			Payload:   "Hello, Styx !",
 		}
 
 		payload, err := json.Marshal(event)
@@ -44,7 +44,7 @@ func main() {
 
 		count++
 
-		if count % 1000 == 0 {
+		if count%1000 == 0 {
 			logger.Printf("sent %d records", count)
 		}
 	}

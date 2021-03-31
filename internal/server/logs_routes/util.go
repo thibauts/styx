@@ -56,13 +56,13 @@ func UpgradeTCP(w http.ResponseWriter) (c *net.TCPConn, err error) {
 	header.Add("Upgrade", api.StyxProtocolString)
 
 	resp := http.Response{
-		Status: "101 Switching Protocols",
+		Status:     "101 Switching Protocols",
 		StatusCode: 101,
-		Proto: "HTTP/1.1",
+		Proto:      "HTTP/1.1",
 		ProtoMajor: 1,
 		ProtoMinor: 1,
-		Body: nil,
-		Header: header,
+		Body:       nil,
+		Header:     header,
 	}
 
 	err = resp.Write(conn)
@@ -76,7 +76,7 @@ func UpgradeTCP(w http.ResponseWriter) (c *net.TCPConn, err error) {
 	return tcpConn, nil
 }
 
-func UpgradeWebsocket(w http.ResponseWriter, r *http.Request, allowedOrigins []string, readBufferSize int, writeBufferSize int)  (conn *websocket.Conn, err error) {
+func UpgradeWebsocket(w http.ResponseWriter, r *http.Request, allowedOrigins []string, readBufferSize int, writeBufferSize int) (conn *websocket.Conn, err error) {
 
 	upgrader := websocket.Upgrader{
 		CheckOrigin: func(r *http.Request) (ret bool) {
@@ -88,7 +88,7 @@ func UpgradeWebsocket(w http.ResponseWriter, r *http.Request, allowedOrigins []s
 
 			return matchOrigin(origins[0], allowedOrigins)
 		},
-		ReadBufferSize: readBufferSize,
+		ReadBufferSize:  readBufferSize,
 		WriteBufferSize: writeBufferSize,
 	}
 

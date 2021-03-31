@@ -25,7 +25,7 @@ var castagnoliTable = crc32.MakeTable(crc32.Castagnoli)
 // channels and storage media. It does so by wrapping a Reader and checking
 // on each Read that the record's checksum matches its data.
 type AtomicReader struct {
-	reader Reader
+	reader  Reader
 	wrapper atomicWrapper
 }
 
@@ -33,7 +33,7 @@ type AtomicReader struct {
 func NewAtomicReader(r Reader) (ar *AtomicReader) {
 
 	ar = &AtomicReader{
-		reader: r,
+		reader:  r,
 		wrapper: atomicWrapper{},
 	}
 
@@ -58,7 +58,7 @@ func (ar *AtomicReader) Read(v Decoder) (n int, err error) {
 // channels and storage media. It does so by wrapping a Writer and appending
 // checksums to records on write.
 type AtomicWriter struct {
-	writer Writer
+	writer  Writer
 	wrapper atomicWrapper
 }
 
@@ -66,7 +66,7 @@ type AtomicWriter struct {
 func NewAtomicWriter(w Writer) (aw *AtomicWriter) {
 
 	aw = &AtomicWriter{
-		writer: w,
+		writer:  w,
 		wrapper: atomicWrapper{},
 	}
 

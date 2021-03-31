@@ -56,7 +56,7 @@ func displayMetrics(prefix string, producedRecords int, producedBytes int, elaps
 		producedRecords,
 		elapsedSeconds,
 		recordRate,
-		byteRate / float64(1 << 20),
+		byteRate/float64(1<<20),
 	)
 }
 
@@ -97,7 +97,7 @@ func benchmarkProduce(host string, name string, size int, count int) (err error)
 		producedRecords += 1
 		producedBytes += n
 
-		if producedRecords % 10000 == 0 {
+		if producedRecords%10000 == 0 {
 			elapsed := time.Since(start)
 			fmt.Printf("\033[1K\r")
 			displayMetrics("produced", producedRecords, producedBytes, elapsed)
@@ -182,7 +182,7 @@ func benchmarkConsume(host string, name string, size int, count int) (err error)
 		consumedRecords += 1
 		consumedBytes += n
 
-		if consumedRecords % 10000 == 0 {
+		if consumedRecords%10000 == 0 {
 			elapsed := time.Since(start)
 			fmt.Printf("\033[1K\r")
 			displayMetrics("consumed", consumedRecords, consumedBytes, elapsed)

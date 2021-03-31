@@ -38,8 +38,8 @@ func (lr *LogsRouter) ReadWSHandler(w http.ResponseWriter, r *http.Request) {
 	params := api.ReadRecordsWSParams{
 		Whence:   log.SeekOrigin,
 		Position: 0,
-		Count: -1,
-		Follow: false,
+		Count:    -1,
+		Follow:   false,
 	}
 	query := r.URL.Query()
 

@@ -278,13 +278,12 @@ func Scan(path string) (err error) {
 				continue
 			}
 
-
 			if err != nil {
 				return err
 			}
 
 			offset += int64(n)
-			position ++
+			position++
 		}
 	}
 

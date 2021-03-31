@@ -60,7 +60,7 @@ type Log struct {
 	fanin            *log.Fanin
 	lock             sync.RWMutex
 	reporter         metrics.Reporter
-	listenerChan	 chan log.Stat
+	listenerChan     chan log.Stat
 	listenerClose    chan struct{}
 }
 

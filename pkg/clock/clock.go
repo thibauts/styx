@@ -15,14 +15,14 @@
 package clock
 
 import (
-	"time"
 	"sync/atomic"
+	"time"
 )
 
 type Clock struct {
-	updaterStop chan struct{}
-	updaterDone chan struct{}
-	ticker *time.Ticker
+	updaterStop   chan struct{}
+	updaterDone   chan struct{}
+	ticker        *time.Ticker
 	nanoTimestamp int64
 }
 
@@ -31,9 +31,9 @@ func New(resolution time.Duration) (c *Clock) {
 	ticker := time.NewTicker(resolution)
 
 	c = &Clock{
-		updaterStop: make(chan struct {}),
-		updaterDone: make(chan struct {}),
-		ticker: ticker,
+		updaterStop:   make(chan struct{}),
+		updaterDone:   make(chan struct{}),
+		ticker:        ticker,
 		nanoTimestamp: time.Now().UnixNano(),
 	}
 
@@ -58,7 +58,7 @@ func (c *Clock) Stop() {
 
 	c.ticker.Stop()
 	c.updaterStop <- struct{}{}
-	<- c.updaterDone
+	<-c.updaterDone
 }
 
 func (c *Clock) Time() (t time.Time) {
@@ -88,10 +88,10 @@ func (c *Clock) updater() {
 
 	for {
 		select {
-		case <- c.updaterStop:
+		case <-c.updaterStop:
 			c.updaterDone <- struct{}{}
 			return
-		case t := <- c.ticker.C:
+		case t := <-c.ticker.C:
 			atomic.StoreInt64(&c.nanoTimestamp, t.UnixNano())
 		}
 	}

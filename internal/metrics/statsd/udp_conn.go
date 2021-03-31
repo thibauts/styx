@@ -16,8 +16,8 @@ package statsd
 
 import (
 	"net"
-	"time"
 	"sync"
+	"time"
 
 	"github.com/dataptive/styx/pkg/logger"
 )
@@ -49,12 +49,11 @@ func NewUDPConn(address string) (uc *UDPConn, err error) {
 	ticker := time.NewTicker(resolvePeriod)
 
 	uc = &UDPConn{
-		sock: sock,
-		address: address,
+		sock:         sock,
+		address:      address,
 		resolvedDest: resolved,
-		ticker: ticker,
+		ticker:       ticker,
 	}
-
 
 	go uc.resolver()
 
