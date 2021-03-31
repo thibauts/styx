@@ -1,6 +1,6 @@
 # Styx
 
-Styx is a simple and high-performance event streaming platform. It aims to provide teams of all sizes with a simple to operate, disk-persisted publish-subscribe system for event streams. Styx is deployed as a single binary with no dependencies, it exposes a high-performance binary protocol as well as HTTP and WebSockets APIs for both event production and consumption.
+Styx is a simple and high-performance event streaming broker. It aims to provide teams of all sizes with a simple to operate, disk-persisted publish-subscribe system for event streams. Styx is deployed as a single binary with no dependencies, it exposes a high-performance binary protocol as well as HTTP and WebSockets APIs for both event production and consumption.
 
 Designed around the concept of a Commit Log as popularized by projects like Apache Kafka or Apache Pulsar, Styx provides durable storage and atomicity on tail-able event logs.
 
@@ -68,7 +68,11 @@ Reliable event production from external sources to Styx logs can also be achieve
 You can launch a Styx container to try it out with
 
 ```bash
-$ docker run --name styx -d -p 7123:7123 dataptive/styx
+$ docker pull dataptive/styx
+$ docker run -p 7123:7123 dataptive/styx
+2021-03-31T08:06:06.987817093Z INFO server: starting Styx server version 0.1.4
+2021-03-31T08:06:06.987971158Z INFO logman: starting log manager (data_directory=./data)
+2021-03-31T08:06:06.988911129Z INFO server: listening for client connections on 0.0.0.0:7123
 ```
 
 Styx will now be reachable at http://localhost:7123/.
@@ -90,7 +94,25 @@ Global Options:
         -h, --help              Display help
 ```
 
-### Installing or building from source
+### Precompiled binaries
+
+Precompiled binaries and packages are available from the [Releases](https://github.com/dataptive/styx/releases) section for various operating systems and architectures.
+
+Installing on Debian-based systems
+
+```bash
+wget https://github.com/dataptive/styx/releases/download/v0.1.4/styx-0.1.4-arm64.deb
+dpkg -i styx-0.1.4-arm64.deb
+```
+
+Installing on Redhat-based systems
+
+```bash
+wget https://github.com/dataptive/styx/releases/download/v0.1.4/styx-0.1.4-arm64.rpm
+rpm -i styx-0.1.4-arm64.rpm
+```
+
+### Building from source
 
 To build or install Styx from source, you will need to have a working Go environment.
 
@@ -191,6 +213,7 @@ The command will launch a batch of produce and consume tasks with various payloa
 Although you'll get better numbers when running outside of docker, the following commands will give you a quick estimate of what you can expect from Styx in your own context.
 
 ```bash
+$ docker pull dataptive/styx
 $ docker run --name styx -d -p 7123:7123 dataptive/styx
 $ docker exec styx styx benchmark
 ```
