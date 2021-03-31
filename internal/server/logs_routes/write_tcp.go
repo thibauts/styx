@@ -19,11 +19,11 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/dataptive/styx/internal/logman"
 	"github.com/dataptive/styx/pkg/api"
 	"github.com/dataptive/styx/pkg/api/tcp"
 	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/pkg/logger"
-	"github.com/dataptive/styx/internal/logman"
 	"github.com/dataptive/styx/pkg/recio"
 
 	"github.com/gorilla/mux"

@@ -19,8 +19,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/dataptive/styx/pkg/client"
 	"github.com/dataptive/styx/cmd"
+	"github.com/dataptive/styx/pkg/client"
 	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/pkg/recio"
 	"github.com/dataptive/styx/pkg/recio/recioutil"

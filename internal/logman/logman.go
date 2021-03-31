@@ -20,9 +20,9 @@ import (
 	"path/filepath"
 	"sync"
 
+	"github.com/dataptive/styx/internal/metrics"
 	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/pkg/log"
-	"github.com/dataptive/styx/internal/metrics"
 )
 
 var (

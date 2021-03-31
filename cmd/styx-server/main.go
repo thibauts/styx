@@ -18,9 +18,9 @@ import (
 	"os"
 
 	"github.com/dataptive/styx/cmd"
-	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/internal/server"
 	"github.com/dataptive/styx/internal/server/config"
+	"github.com/dataptive/styx/pkg/logger"
 
 	"github.com/spf13/pflag"
 )

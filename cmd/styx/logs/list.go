@@ -18,8 +18,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/dataptive/styx/pkg/client"
 	"github.com/dataptive/styx/cmd"
+	"github.com/dataptive/styx/pkg/client"
 
 	"github.com/spf13/pflag"
 )

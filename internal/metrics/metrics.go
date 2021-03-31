@@ -15,10 +15,9 @@
 package metrics
 
 import (
-	"github.com/dataptive/styx/pkg/log"
-
 	"github.com/dataptive/styx/internal/metrics/prometheus"
 	"github.com/dataptive/styx/internal/metrics/statsd"
+	"github.com/dataptive/styx/pkg/log"
 )
 
 type Reporter interface {

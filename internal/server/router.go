@@ -17,10 +17,10 @@ package server
 import (
 	"net/http"
 
-	"github.com/dataptive/styx/pkg/api"
 	"github.com/dataptive/styx/internal/logman"
 	"github.com/dataptive/styx/internal/server/config"
 	"github.com/dataptive/styx/internal/server/logs_routes"
+	"github.com/dataptive/styx/pkg/api"
 
 	"github.com/gorilla/mux"
 	"github.com/prometheus/client_golang/prometheus/promhttp"

@@ -19,9 +19,9 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/dataptive/styx/internal/logman"
 	"github.com/dataptive/styx/pkg/api"
 	"github.com/dataptive/styx/pkg/logger"
-	"github.com/dataptive/styx/internal/logman"
 
 	"github.com/gorilla/mux"
 )
