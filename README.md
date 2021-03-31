@@ -69,7 +69,7 @@ You can launch a Styx container to try it out with
 
 ```bash
 $ docker pull dataptive/styx
-$ docker run -p 7123:7123 dataptive/styx
+$ docker run --name styx -p 7123:7123 dataptive/styx
 2021-03-31T08:06:06.987817093Z INFO server: starting Styx server version 0.1.4
 2021-03-31T08:06:06.987971158Z INFO logman: starting log manager (data_directory=./data)
 2021-03-31T08:06:06.988911129Z INFO server: listening for client connections on 0.0.0.0:7123
@@ -101,15 +101,15 @@ Precompiled binaries and packages are available from the [Releases](https://gith
 Installing on Debian-based systems
 
 ```bash
-wget https://github.com/dataptive/styx/releases/download/v0.1.4/styx-0.1.4-arm64.deb
-dpkg -i styx-0.1.4-arm64.deb
+wget https://github.com/dataptive/styx/releases/download/v0.1.4/styx-0.1.4-amd64.deb
+dpkg -i styx-0.1.4-amd64.deb
 ```
 
 Installing on Redhat-based systems
 
 ```bash
-wget https://github.com/dataptive/styx/releases/download/v0.1.4/styx-0.1.4-arm64.rpm
-rpm -i styx-0.1.4-arm64.rpm
+wget https://github.com/dataptive/styx/releases/download/v0.1.4/styx-0.1.4-amd64.rpm
+rpm -i styx-0.1.4-amd64.rpm
 ```
 
 ### Building from source
