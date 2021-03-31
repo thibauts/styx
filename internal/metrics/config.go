@@ -15,7 +15,7 @@
 package metrics
 
 import (
-	"github.com/dataptive/styx/metrics/statsd"
+	"github.com/dataptive/styx/internal/metrics/statsd"
 )
 
 var (

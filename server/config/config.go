@@ -16,8 +16,8 @@ package config
 
 import (
 	"github.com/dataptive/styx/internal/logman"
-	"github.com/dataptive/styx/metrics"
-	"github.com/dataptive/styx/metrics/statsd"
+	"github.com/dataptive/styx/internal/metrics"
+	"github.com/dataptive/styx/internal/metrics/statsd"
 
 	"github.com/BurntSushi/toml"
 )

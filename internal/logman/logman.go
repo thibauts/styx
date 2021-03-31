@@ -22,7 +22,7 @@ import (
 
 	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/pkg/log"
-	"github.com/dataptive/styx/metrics"
+	"github.com/dataptive/styx/internal/metrics"
 )
 
 var (
