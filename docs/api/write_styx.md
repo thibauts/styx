@@ -23,7 +23,7 @@ Status: 101 Switching protocol
 
 ### Code samples
 
-**Go** (_Requires [styx/client](), [styx/log]() packages._)
+**Go** (_Requires [styx/pkg/client](), [styx/pkg/log]() packages._)
 
 ```golang
 c := client.NewClient("http://localhost:7123")

@@ -15,7 +15,7 @@
 package logs
 
 import (
-	"github.com/dataptive/styx/client"
+	"github.com/dataptive/styx/pkg/client"
 	"github.com/dataptive/styx/cmd"
 
 	"github.com/spf13/pflag"

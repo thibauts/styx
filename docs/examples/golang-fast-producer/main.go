@@ -5,8 +5,8 @@ import (
 	logger "log"
 	"time"
 
-	"github.com/dataptive/styx/client"
-	"github.com/dataptive/styx/log"
+	"github.com/dataptive/styx/pkg/client"
+	"github.com/dataptive/styx/pkg/log"
 )
 
 type Event struct {
