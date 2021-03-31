@@ -28,7 +28,7 @@ import (
 	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/internal/logman"
 	"github.com/dataptive/styx/internal/metrics"
-	"github.com/dataptive/styx/server/config"
+	"github.com/dataptive/styx/internal/server/config"
 )
 
 const (
