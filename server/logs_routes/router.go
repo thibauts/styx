@@ -17,7 +17,7 @@ package logs_routes
 import (
 	"net/http"
 
-	"github.com/dataptive/styx/api"
+	"github.com/dataptive/styx/pkg/api"
 	"github.com/dataptive/styx/logman"
 	"github.com/dataptive/styx/server/config"
 

@@ -21,7 +21,7 @@ import (
 	"text/tabwriter"
 	"text/template"
 
-	"github.com/dataptive/styx/api"
+	"github.com/dataptive/styx/pkg/api"
 )
 
 type ExitCode int

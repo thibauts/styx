@@ -23,8 +23,8 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/dataptive/styx/api"
-	"github.com/dataptive/styx/api/tcp"
+	"github.com/dataptive/styx/pkg/api"
+	"github.com/dataptive/styx/pkg/api/tcp"
 	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/pkg/recio"
 

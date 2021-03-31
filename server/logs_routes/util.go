@@ -20,7 +20,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/dataptive/styx/api"
+	"github.com/dataptive/styx/pkg/api"
 
 	"github.com/gorilla/websocket"
 )

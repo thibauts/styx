@@ -19,7 +19,7 @@ import (
 	"mime"
 	"net/http"
 
-	"github.com/dataptive/styx/api"
+	"github.com/dataptive/styx/pkg/api"
 	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/pkg/logger"
 	"github.com/dataptive/styx/logman"
