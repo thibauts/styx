@@ -43,7 +43,7 @@ nfpms:
     maintainer: Thibaut Séguy <thibaut.seguy@gmail.com>
     description: Simple, high-performance event streaming platform
 
-    file_name_template: "{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+    file_name_template: "{{ .ProjectName }}-{{ .Version }}-{{ .Arch }}"
 
     formats:
       - deb
@@ -63,6 +63,9 @@ nfpms:
         type: config
       - src: scripts/styx.service
         dst: /lib/systemd/system/styx.service
+      - src: /usr/local/bin/styx
+        dst: /usr/bin/styx
+        type: symlink
 
 # snapshot:
 #   name_template: "{{ .Version }}"
