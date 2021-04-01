@@ -18,13 +18,11 @@ import (
 	"bytes"
 	"io"
 	"io/ioutil"
-	"net"
 	"net/http"
 	"net/url"
 	"strconv"
 
 	"github.com/dataptive/styx/pkg/api"
-	"github.com/dataptive/styx/pkg/api/tcp"
 	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/pkg/recio"
 
@@ -385,130 +383,3 @@ func (c *Client) ReadRecordsBatch(logName string, params api.ReadRecordsBatchPar
 	return nil
 }
 
-func (c *Client) WriteRecordsTCP(logName string, flag recio.IOMode, writeBufferSize int, timeout int) (tw *tcp.TCPWriter, err error) {
-
-	endpoint := c.baseURL + "/logs/" + logName + "/records"
-
-	req, err := http.NewRequest(http.MethodPost, endpoint, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Connection", "upgrade")
-	req.Header.Add("Upgrade", api.StyxProtocolString)
-	req.Header.Add(api.TimeoutHeaderName, strconv.Itoa(timeout))
-
-	var tcpConn *net.TCPConn
-
-	dial := func(network string, address string) (conn net.Conn, err error) {
-
-		conn, err = net.Dial(network, address)
-		if err != nil {
-			return nil, err
-		}
-
-		tcpConn = conn.(*net.TCPConn)
-
-		return conn, nil
-	}
-
-	t := &http.Transport{
-		Dial: dial,
-	}
-
-	client := &http.Client{
-		Transport: t,
-	}
-
-	resp, err := client.Do(req)
-	if err != nil {
-		return nil, err
-	}
-
-	if resp.StatusCode != http.StatusSwitchingProtocols {
-		err = api.ReadError(resp.Body)
-		return nil, err
-	}
-
-	var remoteTimeout int
-	rawTimeout := resp.Header.Get(api.TimeoutHeaderName)
-	if rawTimeout != "" {
-
-		remoteTimeout, err = strconv.Atoi(rawTimeout)
-		if err != nil {
-			return nil, err
-		}
-	}
-
-	tw = tcp.NewTCPWriter(tcpConn, writeBufferSize, readBufferSize, timeout, remoteTimeout, flag)
-
-	return tw, nil
-}
-
-func (c *Client) ReadRecordsTCP(name string, params api.ReadRecordsTCPParams, flag recio.IOMode, readBufferSize int, timeout int) (tr *tcp.TCPReader, err error) {
-
-	encoder := schema.NewEncoder()
-	queryParams := url.Values{}
-
-	err = encoder.Encode(params, queryParams)
-	if err != nil {
-		return nil, err
-	}
-
-	url := c.baseURL + "/logs/" + name + "/records?" + queryParams.Encode()
-
-	req, err := http.NewRequest(http.MethodGet, url, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Connection", "upgrade")
-	req.Header.Add("Upgrade", api.StyxProtocolString)
-	req.Header.Add(api.TimeoutHeaderName, strconv.Itoa(timeout))
-
-	var tcpConn *net.TCPConn
-
-	dial := func(network string, address string) (conn net.Conn, err error) {
-
-		conn, err = net.Dial(network, address)
-		if err != nil {
-			return nil, err
-		}
-
-		tcpConn = conn.(*net.TCPConn)
-
-		return conn, nil
-	}
-
-	t := &http.Transport{
-		Dial: dial,
-	}
-
-	client := &http.Client{
-		Transport: t,
-	}
-
-	resp, err := client.Do(req)
-	if err != nil {
-		return nil, err
-	}
-
-	if resp.StatusCode != http.StatusSwitchingProtocols {
-		err = api.ReadError(resp.Body)
-		return nil, err
-	}
-
-	var remoteTimeout int
-	rawTimeout := resp.Header.Get(api.TimeoutHeaderName)
-	if rawTimeout != "" {
-
-		remoteTimeout, err = strconv.Atoi(rawTimeout)
-		if err != nil {
-			return nil, err
-		}
-	}
-
-	tr = tcp.NewTCPReader(tcpConn, writeBufferSize, readBufferSize, timeout, remoteTimeout, flag)
-
-	return tr, nil
-}
