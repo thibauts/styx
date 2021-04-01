@@ -1,7 +1,7 @@
-Read with Websocket
--------------------
+Consume with WebSocket
+----------------------
 
-Read records using websocket protocol.
+Consume records using WebSocket protocol.
 
 **GET** `/logs/{name}/records`
 
@@ -10,11 +10,11 @@ Connection: Upgrade
 
 ### Params 
 
-| Name       	| In    	| Description                                                    	| Default  	|
-|------------	|-------	|----------------------------------------------------------------	|----------	|
-| `name`     	| path  	| Log name.                                                      	|          	|
-| `whence`   	| query 	| Allowed values are `origin`, `start` and `end`.                	| `origin` 	|
-| `position` 	| query 	| Whence relative position from which the records are read from. 	| `0`      	|
+| Name       	| In    	| Description                                                    	    | Default  	|
+|------------	|-------	|-------------------------------------------------------------------	|----------	|
+| `name`     	| path  	| Log name.                                                      	    |          	|
+| `whence`   	| query 	| Allowed values are `origin`, `start` and `end`.                	    | `origin` 	|
+| `position` 	| query 	| Whence relative position from which the records are consumed from. 	| `0`      	|
 
 ### Response 
 

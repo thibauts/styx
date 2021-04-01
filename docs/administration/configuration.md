@@ -21,6 +21,8 @@ $ styx-server --config /etc/styx/config.toml
 | `tcp_read_buffer_size`         | Size of Styx internal read buffers over TCP.                                                      |
 | `tcp_write_buffer_size`        | Size of Styx internal write buffers over TCP.                                                     |
 | `tcp_timeout`                  | Number of seconds before shutting down a Styx Protocol connection when idle.                      |
+| `websocket_read_buffer_size`   | Size of Styx internal read buffers over WebSocket.                                                |
+| `websocket_write_buffer_size`    Size of Styx internal write buffers over WebSocket.                                               |
 
 ### Log manager settings
 

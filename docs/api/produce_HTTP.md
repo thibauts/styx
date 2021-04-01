@@ -1,7 +1,7 @@
-Write with HTTP
----------------
+Produce with HTTP
+-----------------
 
-Write records using HTTP protocol.
+Produce records using HTTP protocol.
 
 **POST** `/logs/{name}/records`  
 
@@ -26,12 +26,12 @@ Status: 200 OK
 
 ### Codes samples
 
-#### Write a record
+#### Produce a record
 
 **Curl**
 
 ```bash
-$ curl -X POST 'http://localhost:7123/logs/myLog/records' -d 'my record content'
+$ curl -X POST 'http://localhost:7123/logs/myLog/records' -d 'my record payload'
 ```
 
 **Python** (_Requires [requests](https://pypi.org/project/requests/) package._)
@@ -39,7 +39,7 @@ $ curl -X POST 'http://localhost:7123/logs/myLog/records' -d 'my record content'
 ```python
 import requests
 
-requests.post('http://localhost:7123/logs/myLog/records', data=b'my record content')
+requests.post('http://localhost:7123/logs/myLog/records', data=b'my record payload')
 ```
 
 **Go**
@@ -54,18 +54,18 @@ client := &http.Client{}
 client.Post(
   "http://localhost:7123/logs/myLog/records", 
   "application/octet-stream", 
-  bytes.NewReader([]byte("my record content")),
+  bytes.NewReader([]byte("my record payload")),
 )
 ```
 
-#### Write line delimited records
+#### Produce line delimited records
 
 **Curl**
 
 ```bash
 $ curl -X POST 'http://localhost:7123/logs/myLog/records' \
   -H 'Content-Type: application/vnd.styx.line-delimited;line-ending=lf' \
-  -d $'my record content\nmy record content\n'
+  -d $'my record payload\nmy record payload\n'
 ```
 
 **Python** (_Requires [requests](https://pypi.org/project/requests/) package._)
@@ -78,7 +78,7 @@ requests.post(
   headers={
     'Content-Type': 'application/vnd.styx.line-delimited;line-ending=lf'
   },
-  data=b''.join([b'my record content\n' for i in range(10)])
+  data=b''.join([b'my record payload\n' for i in range(10)])
 )
 ```
 
@@ -91,7 +91,7 @@ import (
   "string"
 )
 
-records := strings.Repeat("my record content\n", 10)
+records := strings.Repeat("my record payload\n", 10)
 
 client := &http.Client{}
 client.Post(

@@ -18,8 +18,8 @@ Commands:
         delete                  Delete a log
         backup                  Backup a log
         restore                 Restore a log
-        write                   Write records to a log
-        read                    Read records from a log
+        produce                 Produce records to a log
+        consume                 Consume records from a log
 
 Global Options:
         -f, --format string     Output format [text|json] (default "text")
@@ -158,7 +158,7 @@ Global Options:
 ### Example
 
 ```bash
-$ styx logs backup myLog >> myLog.backup.tar.gz
+$ styx logs backup myLog > myLog.backup.tar.gz
 ```
 
 ## Restore log
@@ -182,15 +182,15 @@ Global Options:
 $ styx logs restore restoredLog < myLog.backup.tar.gz
 ```
 
-## Write to a log
+## Produce to a log
 
 ### Usage
 
 ```bash
-$ styx logs write -h
-Usage: styx logs write NAME [OPTIONS]
+$ styx logs produce -h
+Usage: styx logs produce NAME [OPTIONS]
 
-Write to log, input is expected to be line delimited record payloads
+Produce to log, input is expected to be line delimited record payloads
 
 Options:
         -u, --unbuffered        Do not buffer writes
@@ -205,25 +205,25 @@ Global Options:
 ### Example
 
 ```bash
-$ styx logs write myLog
+$ styx logs produce myLog
 >my first record
 >my second record
 ```
 
-## Read from a log
+## Consume from a log
 
 ### Usage
 
 ```bash
-$ styx logs read -h
-Usage: styx logs read NAME [OPTIONS]
+$ styx logs consume -h
+Usage: styx logs consume NAME [OPTIONS]
 
-Read from log and output line delimited record payloads
+Consume from log and output line delimited record payloads
 
 Options:
-        -P, --position int      Position to start reading from (default 0)
+        -P, --position int      Position to start consuming from (default 0)
         -w, --whence string     Reference from which position is computed [origin|start|end] (default "start")
-        -n, --count int         Maximum count of records to read (cannot be used in association with --follow)
+        -n, --count int         Maximum count of records to consume (cannot be used in association with --follow)
         -F, --follow            Wait for new records when reaching end of stream
         -u, --unbuffered        Do not buffer read
         -b, --binary            Output binary records
@@ -237,7 +237,7 @@ Global Options:
 ### Example
 
 ```bash
-$ styx logs read myLog
+$ styx logs consume myLog
 my first record
 my second record
 ```

@@ -169,7 +169,7 @@ While the server is running, create a `test` event log and tail its contents usi
 
 ```bash
 $ styx logs create test
-$ styx logs read test --follow
+$ styx logs consume test --follow
 ```
 
 The CLI will hang, waiting for incoming events (you can quit with Ctrl+D)
@@ -235,13 +235,13 @@ The documentation is a work in progress, please open an issue if you find someth
 	* [CLI reference](./docs/administration/CLI.md)
 * [API reference](./docs/api)
 	* [Managing event logs](./docs/api/manage.md)
-	* [Producing events through the REST API](./docs/api/write_HTTP.md)
-	* [Consuming events through the REST API](./docs/api/read_HTTP.md)
-	* [Producing events with WebSockets](./docs/api/write_WS.md)
-	* [Consuming events with WebSockets](./docs/api/read_WS.md)
+	* [Producing events through the REST API](./docs/api/produce_HTTP.md)
+	* [Consuming events through the REST API](./docs/api/consume_HTTP.md)
+	* [Producing events with WebSockets](./docs/api/produce_websocket.md)
+	* [Consuming events with WebSockets](./docs/api/consume_websocket.md)
 	* [Binary protocol specs](./docs/api/styx_protocol.md)
-		* [Opening a connection for producing events](./docs/api/write_styx.md)
-		* [Opening a connection for consuming events](./docs/api/read_styx.md)
+		* [Opening a connection for producing events](./docs/api/produce_styx.md)
+		* [Opening a connection for consuming events](./docs/api/consume_styx.md)
 	* [API Media Types](./docs/api/media_types.md)
 	* [API errors](./docs/api/errors.md)
 * [Howto](./docs/howto)

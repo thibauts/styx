@@ -28,17 +28,17 @@ import (
 	"github.com/spf13/pflag"
 )
 
-const logsReadUsage = `
-Usage: styx logs read NAME [OPTIONS]
+const logsConsumeUsage = `
+Usage: styx logs consume NAME [OPTIONS]
 
-Read from log and output line delimited record payloads
+Consume from log and output line delimited record payloads
 
 Options:
-	-P, --position int 	Position to start reading from (default 0)
+	-P, --position int 	Position to start consuming from (default 0)
 	-w, --whence string	Reference from which position is computed [origin|start|end] (default "start")
-	-n, --count int		Maximum count of records to read (cannot be used in association with --follow)
+	-n, --count int		Maximum count of records to consume (cannot be used in association with --follow)
 	-F, --follow 		Wait for new records when reaching end of stream
-	-u, --unbuffered	Do not buffer read
+	-u, --unbuffered	Do not buffer reads
 	-b, --binary		Output binary records
 	-l, --line-ending   	Specify line-ending [cr|lf|crlf] for non binary record output
 
@@ -51,36 +51,36 @@ const (
 	writeBufferSize = 1 << 20 // 1MB
 )
 
-func ReadLog(args []string) {
+func Consume(args []string) {
 
-	readOpts := pflag.NewFlagSet("read", pflag.ContinueOnError)
-	whence := readOpts.StringP("whence", "w", styx.DefaultConsumerParams.Whence, "")
-	position := readOpts.Int64P("position", "P", styx.DefaultConsumerParams.Position, "")
-	count := readOpts.Int64P("count", "n", styx.DefaultConsumerParams.Count, "")
-	follow := readOpts.BoolP("follow", "F", styx.DefaultConsumerParams.Follow, "")
-	unbuffered := readOpts.BoolP("unbuffered", "u", false, "")
-	binary := readOpts.BoolP("binary", "b", false, "")
-	lineEnding := readOpts.StringP("line-ending", "l", "lf", "")
-	host := readOpts.StringP("host", "H", "http://localhost:7123", "")
-	isHelp := readOpts.BoolP("help", "h", false, "")
-	readOpts.Usage = func() {
-		cmd.DisplayUsage(cmd.MisuseCode, logsReadUsage)
+	consumeOpts := pflag.NewFlagSet("consume", pflag.ContinueOnError)
+	whence := consumeOpts.StringP("whence", "w", styx.DefaultConsumerParams.Whence, "")
+	position := consumeOpts.Int64P("position", "P", styx.DefaultConsumerParams.Position, "")
+	count := consumeOpts.Int64P("count", "n", styx.DefaultConsumerParams.Count, "")
+	follow := consumeOpts.BoolP("follow", "F", styx.DefaultConsumerParams.Follow, "")
+	unbuffered := consumeOpts.BoolP("unbuffered", "u", false, "")
+	binary := consumeOpts.BoolP("binary", "b", false, "")
+	lineEnding := consumeOpts.StringP("line-ending", "l", "lf", "")
+	host := consumeOpts.StringP("host", "H", "http://localhost:7123", "")
+	isHelp := consumeOpts.BoolP("help", "h", false, "")
+	consumeOpts.Usage = func() {
+		cmd.DisplayUsage(cmd.MisuseCode, logsConsumeUsage)
 	}
 
-	err := readOpts.Parse(args)
+	err := consumeOpts.Parse(args)
 	if err != nil {
-		cmd.DisplayUsage(cmd.MisuseCode, logsReadUsage)
+		cmd.DisplayUsage(cmd.MisuseCode, logsConsumeUsage)
 	}
 
 	if *isHelp {
-		cmd.DisplayUsage(cmd.SuccessCode, logsReadUsage)
+		cmd.DisplayUsage(cmd.SuccessCode, logsConsumeUsage)
 	}
 
-	if readOpts.NArg() != 1 {
-		cmd.DisplayUsage(cmd.MisuseCode, logsReadUsage)
+	if consumeOpts.NArg() != 1 {
+		cmd.DisplayUsage(cmd.MisuseCode, logsConsumeUsage)
 	}
 
-	name := readOpts.Args()[0]
+	name := consumeOpts.Args()[0]
 
 	client := styx.NewClient(*host)
 

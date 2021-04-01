@@ -1,7 +1,7 @@
-Read using HTTP
----------------
+Consume using HTTP
+------------------
 
-Read records using HTTP protocol.
+Consume records using HTTP protocol.
 
 **GET** `/logs/{name}/records`  
 
@@ -11,7 +11,7 @@ Read records using HTTP protocol.
 |------------------	|--------	|------------------------------------------------------------------------------------------------------------------------------	|----------------------------	|
 | `name`           	| path   	| Log name.                                                                                                                    	|                            	|
 | `whence`         	| query  	| Allowed values are `origin`, `start` and `end`.                                                                              	| `origin`                   	|
-| `position`       	| query  	| Whence relative position from which the records are read from.                                                               	| `0`                        	|
+| `position`       	| query  	| Whence relative position from which the records are consumed from.                                                           	| `0`                        	|
 | `count`          	| query  	| Limits the number of records to read, `-1` means no limitation.<br>Not available with `application/octet-stream` media type. 	| `-1`                       	|
 | `follow`         	| query  	| Read will block until new records are written to the log.<br>Not available with `application/octet-stream` media type.       	| `false`                    	|
 | `Accept`         	| header 	| See [Media-Types](/docs/api/media_types.md) for allowed values.                                                              	| `application/octet-stream` 	|

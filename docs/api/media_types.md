@@ -3,13 +3,13 @@ Media types
 
 Three media types are available to deal with log records over HTTP within styx.
 
-### Binary record
+### Single binary record
 
 `application/octet-stream` 
 
-This allows to specify that an HTTP body (request or response) is processed as one record.
+This allows to specify that an HTTP body (request or response) is processed as one record payload.
 
-### Binary records
+### Multiple binary records
 
 `application/vnd.styx.binary-records`
 

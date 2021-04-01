@@ -28,10 +28,10 @@ import (
 	"github.com/spf13/pflag"
 )
 
-const logsWriteUsage = `
-Usage: styx logs write NAME [OPTIONS]
+const logsProduceUsage = `
+Usage: styx logs produce NAME [OPTIONS]
 
-Write to log, input is expected to be line delimited record payloads
+Produce to log, input is expected to be line delimited record payloads
 
 Options:
 	-u, --unbuffered	Do not buffer writes
@@ -47,32 +47,32 @@ const (
 	readBufferSize = 1 << 20 // 1MB
 )
 
-func WriteLog(args []string) {
+func Produce(args []string) {
 
-	writeOpts := pflag.NewFlagSet("logs write", pflag.ContinueOnError)
-	unbuffered := writeOpts.BoolP("unbuffered", "u", false, "")
-	binary := writeOpts.BoolP("binary", "b", false, "")
-	lineEnding := writeOpts.StringP("line-ending", "l", "lf", "")
-	host := writeOpts.StringP("host", "H", "http://localhost:7123", "")
-	isHelp := writeOpts.BoolP("help", "h", false, "")
-	writeOpts.Usage = func() {
-		cmd.DisplayUsage(cmd.MisuseCode, logsWriteUsage)
+	produceOpts := pflag.NewFlagSet("logs write", pflag.ContinueOnError)
+	unbuffered := produceOpts.BoolP("unbuffered", "u", false, "")
+	binary := produceOpts.BoolP("binary", "b", false, "")
+	lineEnding := produceOpts.StringP("line-ending", "l", "lf", "")
+	host := produceOpts.StringP("host", "H", "http://localhost:7123", "")
+	isHelp := produceOpts.BoolP("help", "h", false, "")
+	produceOpts.Usage = func() {
+		cmd.DisplayUsage(cmd.MisuseCode, logsProduceUsage)
 	}
 
-	err := writeOpts.Parse(args)
+	err := produceOpts.Parse(args)
 	if err != nil {
-		cmd.DisplayUsage(cmd.MisuseCode, logsWriteUsage)
+		cmd.DisplayUsage(cmd.MisuseCode, logsProduceUsage)
 	}
 
 	if *isHelp {
-		cmd.DisplayUsage(cmd.SuccessCode, logsWriteUsage)
+		cmd.DisplayUsage(cmd.SuccessCode, logsProduceUsage)
 	}
 
-	if writeOpts.NArg() != 1 {
-		cmd.DisplayUsage(cmd.MisuseCode, logsWriteUsage)
+	if produceOpts.NArg() != 1 {
+		cmd.DisplayUsage(cmd.MisuseCode, logsProduceUsage)
 	}
 
-	name := writeOpts.Args()[0]
+	name := produceOpts.Args()[0]
 
 	client := styx.NewClient(*host)
 

@@ -1,9 +1,9 @@
 HTTP long polling
-----------------------
+-----------------
 
-Styx HTTP api provides means to read log records using long polling.
+Styx HTTP api provides means to consume log records using long polling.
 
-Assuming you have never consumed any records from `myLog` and you want to retrieve its content in batchs of 100 line delimited records.
+Assuming you have never consumed any records from `myLog` and you want to retrieve its content in batches of 100 line delimited records.
 
 **Python** (_Requires [requests](https://pypi.org/project/requests/) package._)
 

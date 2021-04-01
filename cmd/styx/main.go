@@ -51,8 +51,8 @@ Commands:
 	truncate                Truncate a log
 	backup			Backup a log
 	restore			Restore a log
-	write			Write records to a log
-	read			Read records from a log
+	produce			Produce records to a log
+	consume			Consume records from a log
 
 Global Options:
 	-f, --format string	Output format [text|json] (default "text")
@@ -93,10 +93,10 @@ func main() {
 			logs.BackupLog(args[1:])
 		case "restore":
 			logs.RestoreLog(args[1:])
-		case "write":
-			logs.WriteLog(args[1:])
-		case "read":
-			logs.ReadLog(args[1:])
+		case "produce":
+			logs.Produce(args[1:])
+		case "consume":
+			logs.Consume(args[1:])
 		case "--help":
 			cmd.DisplayUsage(cmd.SuccessCode, logsUsage)
 		case "-h":

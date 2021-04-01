@@ -1,5 +1,5 @@
-Read with Styx protocol
-------------------------
+Consume with Styx protocol
+--------------------------
 
 Read records using [Styx protocol](/docs/api/styx_protocol.md).
 

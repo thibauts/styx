@@ -1,7 +1,7 @@
-Write with Styx protocol
-------------------------
+Produce with Styx protocol
+--------------------------
 
-Write records using [Styx protocol](/docs/api/styx_protocol.md).
+Produce records using [Styx protocol](/docs/api/styx_protocol.md).
 
 **POST** `/logs/{name}/records`  
 

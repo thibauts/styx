@@ -1,7 +1,7 @@
-Write with Websocket
---------------------
+Produce with WebSocket
+----------------------
 
-Write records using Websocket protocol.
+Produce records using WebSocket protocol.
 
 **GET** `/logs/{name}/records`  
 
@@ -25,7 +25,7 @@ Status: 101 Switching protocol
 
 **Wsdump** (_Requires [websocket-client](https://pypi.org/project/websocket-client-py3/) package._)
 ```bash
-$ echo 'my record content' | wsdump.py ws://localhost:7123/logs/myLog/records --headers 'X-HTTP-Method-Override: POST'
+$ echo 'my record payload' | wsdump.py ws://localhost:7123/logs/myLog/records --headers 'X-HTTP-Method-Override: POST'
 ```
 
 **Python** (_Requires [websocket-client](https://pypi.org/project/websocket-client-py3/) package._)
@@ -38,7 +38,7 @@ ws = websocket.create_connection(
   header=['X-HTTP-Method-Override: POST']
 )
 
-record = 'my record content'
+record = 'my record payload'
 
 for i in range(10):
   ws.send(record)
@@ -70,7 +70,7 @@ if resp.StatusCode != http.StatusSwitchingProtocols {
 
 defer conn.Close()
 
-record := []byte("my record content")
+record := []byte("my record payload")
 
 for i := 0; i < 10; i++ {
     err = conn.WriteMessage(websocket.BinaryMessage, record)

@@ -5,7 +5,7 @@ import (
 	logger "log"
 	"time"
 
-	"github.com/dataptive/styx/pkg/client"
+	styx "github.com/dataptive/styx/pkg/client"
 	"github.com/dataptive/styx/pkg/log"
 )
 
@@ -15,9 +15,9 @@ type Event struct {
 }
 
 func main() {
-	c := client.NewClient("http://localhost:7123")
+	client := styx.NewClient("http://localhost:7123")
 
-	producer, err := c.NewProducer("fast", client.DefaultProducerOptions)
+	producer, err := client.NewProducer("fast", styx.DefaultProducerOptions)
 	if err != nil {
 		logger.Fatal(err)
 	}
@@ -45,7 +45,7 @@ func main() {
 		count++
 
 		if count%1000 == 0 {
-			logger.Printf("sent %d records", count)
+			logger.Printf("produced %d records", count)
 		}
 	}
 
