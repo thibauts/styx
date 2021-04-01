@@ -20,7 +20,7 @@ import (
 	"os"
 
 	"github.com/dataptive/styx/cmd"
-	"github.com/dataptive/styx/pkg/client"
+	styx "github.com/dataptive/styx/pkg/client"
 	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/pkg/recio"
 	"github.com/dataptive/styx/pkg/recio/recioutil"
@@ -74,9 +74,9 @@ func WriteLog(args []string) {
 
 	name := writeOpts.Args()[0]
 
-	c := client.NewClient(*host)
+	client := styx.NewClient(*host)
 
-	producer, err := c.NewProducer(name, client.DefaultProducerOptions)
+	producer, err := client.NewProducer(name, styx.DefaultProducerOptions)
 	if err != nil {
 		cmd.DisplayError(err)
 	}

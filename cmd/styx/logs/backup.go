@@ -18,7 +18,7 @@ import (
 	"os"
 
 	"github.com/dataptive/styx/cmd"
-	"github.com/dataptive/styx/pkg/client"
+	styx "github.com/dataptive/styx/pkg/client"
 
 	"github.com/spf13/pflag"
 )
@@ -51,13 +51,13 @@ func BackupLog(args []string) {
 		cmd.DisplayUsage(cmd.SuccessCode, logsBackupUsage)
 	}
 
-	httpClient := client.NewClient(*host)
+	client := styx.NewClient(*host)
 
 	if backupOpts.NArg() != 1 {
 		cmd.DisplayUsage(cmd.MisuseCode, logsBackupUsage)
 	}
 
-	err = httpClient.BackupLog(args[0], os.Stdout)
+	err = client.BackupLog(args[0], os.Stdout)
 	if err != nil {
 		cmd.DisplayError(err)
 	}

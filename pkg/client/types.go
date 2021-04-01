@@ -12,30 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package api
-
-import (
-	"errors"
-
-	"github.com/dataptive/styx/internal/logman"
-	"github.com/dataptive/styx/pkg/log"
-)
-
-const (
-	TimeoutHeaderName     = "X-Styx-Timeout"
-	RecordLinesMediaType  = "application/vnd.styx.line-delimited"
-	RecordBinaryMediaType = "application/vnd.styx.binary-records"
-	StyxProtocolString    = "styx/0"
-)
-
-var (
-	ErrInvalidWhence = errors.New("invalid whence")
-)
+package client
 
 //
 type LogInfo struct {
 	Name          string           `json:"name"`
-	Status        logman.LogStatus `json:"status"`
+	Status        string           `json:"status"`
 	RecordCount   int64            `json:"record_count"`
 	FileSize      int64            `json:"file_size"`
 	StartPosition int64            `json:"start_position"`
@@ -54,20 +36,10 @@ type LogConfig struct {
 	LogMaxAge       int64 `schema:"log_max_age"`
 }
 
-//
-type ListLogsResponse []LogInfo
-
-//
-type CreateLogForm struct {
+type createLogForm struct {
 	Name string `schema:"name,required"`
 	*LogConfig
 }
-
-//
-type CreateLogResponse LogInfo
-
-//
-type GetLogResponse LogInfo
 
 //
 type RestoreLogParams struct {
@@ -75,51 +47,24 @@ type RestoreLogParams struct {
 }
 
 //
-type ProduceResponse struct {
-	Position int64 `json:"position"`
-	Count    int64 `json:"count"`
-}
+type ListLogsResponse []LogInfo
 
 //
-type ConsumeParams struct {
-	Whence   log.Whence `schema:"whence"`
-	Position int64      `schema:"position"`
-	Count    int64      `schema:"count"`
-	Follow   bool       `schema:"follow"`
-}
+type CreateLogResponse LogInfo
 
 //
-func (p ConsumeParams) Validate() (err error) {
-	err = validateWhence(p.Whence)
+type GetLogResponse LogInfo
 
-	if err != nil {
-		return err
-	}
+// //
+// type ProduceResponse struct {
+// 	Position int64 `json:"position"`
+// 	Count    int64 `json:"count"`
+// }
 
-	return nil
-}
-
-func validateWhence(whence log.Whence) (err error) {
-
-	validWhences := []log.Whence{
-		log.SeekOrigin,
-		log.SeekStart,
-		log.SeekCurrent,
-		log.SeekEnd,
-	}
-
-	found := false
-	for _, w := range validWhences {
-
-		if w == whence {
-			found = true
-			break
-		}
-	}
-
-	if !found {
-		return ErrInvalidWhence
-	}
-
-	return nil
-}
+// //
+// type ConsumeParams struct {
+// 	Whence   string     `schema:"whence"`
+// 	Position int64      `schema:"position"`
+// 	Count    int64      `schema:"count"`
+// 	Follow   bool       `schema:"follow"`
+// }

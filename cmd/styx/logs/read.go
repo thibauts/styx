@@ -20,7 +20,7 @@ import (
 	"os"
 
 	"github.com/dataptive/styx/cmd"
-	"github.com/dataptive/styx/pkg/client"
+	styx "github.com/dataptive/styx/pkg/client"
 	"github.com/dataptive/styx/pkg/log"
 	"github.com/dataptive/styx/pkg/recio"
 	"github.com/dataptive/styx/pkg/recio/recioutil"
@@ -54,10 +54,10 @@ const (
 func ReadLog(args []string) {
 
 	readOpts := pflag.NewFlagSet("read", pflag.ContinueOnError)
-	whence := readOpts.StringP("whence", "w", string(log.SeekOrigin), "")
-	position := readOpts.Int64P("position", "P", 0, "")
-	count := readOpts.Int64P("count", "n", -1, "")
-	follow := readOpts.BoolP("follow", "F", false, "")
+	whence := readOpts.StringP("whence", "w", styx.DefaultConsumerParams.Whence, "")
+	position := readOpts.Int64P("position", "P", styx.DefaultConsumerParams.Position, "")
+	count := readOpts.Int64P("count", "n", styx.DefaultConsumerParams.Count, "")
+	follow := readOpts.BoolP("follow", "F", styx.DefaultConsumerParams.Follow, "")
 	unbuffered := readOpts.BoolP("unbuffered", "u", false, "")
 	binary := readOpts.BoolP("binary", "b", false, "")
 	lineEnding := readOpts.StringP("line-ending", "l", "lf", "")
@@ -82,9 +82,9 @@ func ReadLog(args []string) {
 
 	name := readOpts.Args()[0]
 
-	c := client.NewClient(*host)
+	client := styx.NewClient(*host)
 
-	logInfo, err := c.GetLog(name)
+	logInfo, err := client.GetLog(name)
 	if err != nil {
 		cmd.DisplayError(err)
 	}
@@ -93,14 +93,14 @@ func ReadLog(args []string) {
 		count = &logInfo.RecordCount
 	}
 
-	params := client.ConsumerParams{
-		Whence:   client.Whence(*whence),
+	params := styx.ConsumerParams{
+		Whence:   *whence,
 		Position: *position,
 		Count:    *count,
 		Follow:   *follow,
 	}
 
-	consumer, err := c.NewConsumer(name, params, client.DefaultConsumerOptions)
+	consumer, err := client.NewConsumer(name, params, styx.DefaultConsumerOptions)
 	if err != nil {
 		cmd.DisplayError(err)
 	}

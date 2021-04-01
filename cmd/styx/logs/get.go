@@ -16,7 +16,7 @@ package logs
 
 import (
 	"github.com/dataptive/styx/cmd"
-	"github.com/dataptive/styx/pkg/client"
+	styx "github.com/dataptive/styx/pkg/client"
 
 	"github.com/spf13/pflag"
 )
@@ -59,13 +59,13 @@ func GetLog(args []string) {
 		cmd.DisplayUsage(cmd.SuccessCode, logsGetUsage)
 	}
 
-	httpClient := client.NewClient(*host)
+	client := styx.NewClient(*host)
 
 	if getOpts.NArg() != 1 {
 		cmd.DisplayUsage(cmd.MisuseCode, logsGetUsage)
 	}
 
-	log, err := httpClient.GetLog(args[0])
+	log, err := client.GetLog(args[0])
 
 	if err != nil {
 		cmd.DisplayError(err)

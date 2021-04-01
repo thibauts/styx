@@ -19,7 +19,7 @@ import (
 	"time"
 
 	"github.com/dataptive/styx/cmd"
-	"github.com/dataptive/styx/pkg/client"
+	styx "github.com/dataptive/styx/pkg/client"
 
 	"github.com/spf13/pflag"
 )
@@ -60,14 +60,14 @@ func ListLogs(args []string) {
 		cmd.DisplayUsage(cmd.SuccessCode, logsListUsage)
 	}
 
-	httpClient := client.NewClient(*host)
+	client := styx.NewClient(*host)
 
 	if listOpts.NArg() != 0 {
 		cmd.DisplayUsage(cmd.MisuseCode, logsListUsage)
 	}
 
 	for {
-		logs, err := httpClient.ListLogs()
+		logs, err := client.ListLogs()
 		if err != nil {
 			cmd.DisplayError(err)
 		}

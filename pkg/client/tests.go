@@ -14,218 +14,24 @@
 
 package client
 
-import (
-	"fmt"
-	"io"
-	"net/http"
-	"net/url"
+// import (
+// 	"bytes"
+// 	"fmt"
+// 	"io"
+// 	"io/ioutil"
+// 	"net/http"
+// 	"net/url"
+// 	"strconv"
 
-	"github.com/dataptive/styx/pkg/api"
+// 	"github.com/dataptive/styx/pkg/api"
+// 	"github.com/dataptive/styx/pkg/log"
+// 	"github.com/dataptive/styx/pkg/recio"
 
-	"github.com/gorilla/schema"
-)
+// 	"github.com/gorilla/schema"
+// )
 
-var (
-	DefaultLogConfig = LogConfig{
-		MaxRecordSize:   1 << 20, // 1MB
-		IndexAfterSize:  1 << 20, // 1MB
-		SegmentMaxCount: -1,
-		SegmentMaxSize:  1 << 30, // 1GB
-		SegmentMaxAge:   -1,
-		LogMaxCount:     -1,
-		LogMaxSize:      -1,
-		LogMaxAge:       -1,
-	}
-)
-
-//
-type Client struct {
-	baseURL    string
-	httpClient *http.Client
-}
-
-//
-func NewClient(baseURL string) (c *Client) {
-
-	c = &Client{
-		baseURL:    baseURL,
-		httpClient: &http.Client{},
-	}
-
-	return c
-}
-
-//
-func (c *Client) ListLogs() (r ListLogsResponse, err error) {
-
-	endpoint := fmt.Sprintf("%s/logs", c.baseURL)
-
-	resp, err := c.httpClient.Get(endpoint)
-	if err != nil {
-		return r, err
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		err = api.ReadError(resp.Body)
-		return r, err
-	}
-
-	api.ReadResponse(resp.Body, &r)
-
-	return r, nil
-}
-
-//
-func (c *Client) CreateLog(name string, config LogConfig) (r CreateLogResponse, err error) {
-
-	endpoint := fmt.Sprintf("%s/logs", c.baseURL)
-
-	encoder := schema.NewEncoder()
-
-	logForm := createLogForm{
-		Name:      name,
-		LogConfig: &config,
-	}
-	form := url.Values{}
-
-	err = encoder.Encode(logForm, form)
-	if err != nil {
-		return r, err
-	}
-
-	resp, err := c.httpClient.PostForm(endpoint, form)
-	if err != nil {
-		return r, err
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		err = api.ReadError(resp.Body)
-		return r, err
-	}
-
-	api.ReadResponse(resp.Body, &r)
-
-	return r, nil
-}
-
-//
-func (c *Client) GetLog(name string) (r GetLogResponse, err error) {
-
-	endpoint := fmt.Sprintf("%s/logs/%s", c.baseURL, name)
-
-	resp, err := c.httpClient.Get(endpoint)
-	if err != nil {
-		return r, err
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		err = api.ReadError(resp.Body)
-		return r, err
-	}
-
-	api.ReadResponse(resp.Body, &r)
-
-	return r, nil
-}
-
-//
-func (c *Client) DeleteLog(name string) (err error) {
-
-	endpoint := fmt.Sprintf("%s/logs/%s", c.baseURL, name)
-
-	req, err := http.NewRequest(http.MethodDelete, endpoint, nil)
-	if err != nil {
-		return err
-	}
-
-	resp, err := c.httpClient.Do(req)
-	if err != nil {
-		return err
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		err = api.ReadError(resp.Body)
-		return err
-	}
-
-	return nil
-}
-
-//
-func (c *Client) TruncateLog(name string) (err error) {
-
-	endpoint := fmt.Sprintf("%s/logs/%s/truncate", c.baseURL, name)
-
-	req, err := http.NewRequest(http.MethodPost, endpoint, nil)
-	if err != nil {
-		return err
-	}
-
-	resp, err := c.httpClient.Do(req)
-	if err != nil {
-		return err
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		err = api.ReadError(resp.Body)
-		return err
-	}
-
-	return nil
-}
-
-//
-func (c *Client) BackupLog(name string, w io.Writer) (err error) {
-
-	endpoint := fmt.Sprintf("%s/logs/%s/backup", c.baseURL, name)
-
-	req, err := http.NewRequest(http.MethodGet, endpoint, nil)
-	if err != nil {
-		return err
-	}
-
-	resp, err := c.httpClient.Do(req)
-	if err != nil {
-		return err
-	}
-
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		err = api.ReadError(resp.Body)
-		return err
-	}
-
-	_, err = io.Copy(w, resp.Body)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-//
-func (c *Client) RestoreLog(name string, r io.Reader) (err error) {
-
-	endpoint := fmt.Sprintf("%s/logs/restore?name=%s", c.baseURL, name)
-
-	resp, err := c.httpClient.Post(endpoint, "application/gzip", r)
-	if err != nil {
-		return err
-	}
-
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		err = api.ReadError(resp.Body)
-		return err
-	}
-
-	return nil
-}
+// type BatchProduceHandler func(w recio.Writer) (err error)
+// type BatchConsumeHandler func(w recio.Reader) (err error)
 
 // func (c *Client) Produce(name string, record log.Record) (r ProduceResponse, err error) {
 

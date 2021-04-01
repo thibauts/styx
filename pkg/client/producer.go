@@ -36,13 +36,18 @@ var (
 	}
 )
 
+//
 type SyncHandler func(syncProgress log.SyncProgress)
+
+//
 type ErrorHandler func(err error)
 
+//
 type Producer struct {
 	writer *tcp.TCPWriter
 }
 
+//
 type ProducerOptions struct {
 	ReadTimeout     int
 	ReadBufferSize  int
@@ -50,6 +55,7 @@ type ProducerOptions struct {
 	IOMode          recio.IOMode
 }
 
+//
 func (c *Client) NewProducer(name string, options ProducerOptions) (p *Producer, err error) {
 
 	endpoint := c.baseURL + "/logs/" + name + "/records"
@@ -80,7 +86,7 @@ func (c *Client) NewProducer(name string, options ProducerOptions) (p *Producer,
 		return nil, err
 	}
 
-	br := bufio.NewReader(NewByteReader(conn))
+	br := bufio.NewReader(newByteReader(conn))
 
 	resp, err := http.ReadResponse(br, req)
 	if err != nil {
@@ -113,6 +119,7 @@ func (c *Client) NewProducer(name string, options ProducerOptions) (p *Producer,
 	return p, nil
 }
 
+//
 func (p *Producer) Write(r *log.Record) (n int, err error) {
 
 	n, err = p.writer.Write(r)
@@ -123,6 +130,7 @@ func (p *Producer) Write(r *log.Record) (n int, err error) {
 	return n, nil
 }
 
+//
 func (p *Producer) Flush() (err error) {
 
 	err = p.writer.Flush()
@@ -133,6 +141,7 @@ func (p *Producer) Flush() (err error) {
 	return nil
 }
 
+//
 func (p *Producer) Close() (err error) {
 
 	err = p.writer.Close()
@@ -143,11 +152,13 @@ func (p *Producer) Close() (err error) {
 	return nil
 }
 
+//
 func (p *Producer) HandleSync(h SyncHandler) {
 
 	p.writer.HandleSync(log.SyncHandler(h))
 }
 
+//
 func (p *Producer) HandleError(h ErrorHandler) {
 
 	p.writer.HandleError(tcp.ErrorHandler(h))

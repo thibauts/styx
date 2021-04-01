@@ -88,7 +88,7 @@ func (lr *LogsRouter) WriteBatchHandler(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	response := api.WriteRecordsBatchResponse(progress)
+	response := api.ProduceResponse(progress)
 
 	api.WriteResponse(w, http.StatusOK, response)
 }

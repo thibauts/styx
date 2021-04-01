@@ -16,7 +16,7 @@ package logs
 
 import (
 	"github.com/dataptive/styx/cmd"
-	"github.com/dataptive/styx/pkg/client"
+	styx "github.com/dataptive/styx/pkg/client"
 
 	"github.com/spf13/pflag"
 )
@@ -49,13 +49,13 @@ func TruncateLog(args []string) {
 		cmd.DisplayUsage(cmd.SuccessCode, logsTruncateUsage)
 	}
 
-	httpClient := client.NewClient(*host)
+	client := styx.NewClient(*host)
 
 	if truncateOpts.NArg() != 1 {
 		cmd.DisplayUsage(cmd.MisuseCode, logsTruncateUsage)
 	}
 
-	err = httpClient.TruncateLog(truncateOpts.Args()[0])
+	err = client.TruncateLog(truncateOpts.Args()[0])
 	if err != nil {
 		cmd.DisplayError(err)
 	}

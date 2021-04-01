@@ -34,7 +34,7 @@ func (lr *LogsRouter) ReadBatchHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	name := vars["name"]
 
-	params := api.ReadRecordsBatchParams{
+	params := api.ConsumeParams{
 		Whence:   log.SeekOrigin,
 		Position: 0,
 		Count:    -1,

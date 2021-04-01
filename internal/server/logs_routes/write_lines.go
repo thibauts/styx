@@ -120,7 +120,7 @@ func (lr *LogsRouter) WriteLinesHandler(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	response := api.WriteRecordsLinesResponse(progress)
+	response := api.ProduceResponse(progress)
 
 	api.WriteResponse(w, http.StatusOK, response)
 

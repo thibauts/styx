@@ -18,20 +18,20 @@ import (
 	"io"
 )
 
-type ByteReader struct {
+type byteReader struct {
 	reader io.Reader
 }
 
-func NewByteReader(r io.Reader) (br *ByteReader) {
+func newByteReader(r io.Reader) (br *byteReader) {
 
-	br = &ByteReader{
+	br = &byteReader{
 		reader: r,
 	}
 
 	return br
 }
 
-func (br *ByteReader) Read(p []byte) (n int, err error) {
+func (br *byteReader) Read(p []byte) (n int, err error) {
 
 	return br.reader.Read(p[:1])
 }

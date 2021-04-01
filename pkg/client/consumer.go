@@ -45,26 +45,27 @@ var (
 	}
 )
 
-type Whence string
-
 const (
-	SeekOrigin  Whence = "origin"  // Seek from the log origin (position 0).
-	SeekStart   Whence = "start"   // Seek from the first available record.
-	SeekCurrent Whence = "current" // Seek from the current position.
-	SeekEnd     Whence = "end"     // Seek from the end of the log.
+	SeekOrigin  string = "origin"  // Seek from the log origin (position 0).
+	SeekStart   string = "start"   // Seek from the first available record.
+	SeekCurrent string = "current" // Seek from the current position.
+	SeekEnd     string = "end"     // Seek from the end of the log.
 )
 
+//
 type Consumer struct {
 	reader *tcp.TCPReader
 }
 
+//
 type ConsumerParams struct {
-	Whence   Whence `schema:"whence"`
+	Whence   string `schema:"whence"`
 	Position int64  `schema:"position"`
 	Count    int64  `schema:"count"`
 	Follow   bool   `schema:"follow"`
 }
 
+//
 type ConsumerOptions struct {
 	ReadTimeout     int
 	ReadBufferSize  int
@@ -72,6 +73,7 @@ type ConsumerOptions struct {
 	IOMode          recio.IOMode
 }
 
+//
 func (c *Client) NewConsumer(name string, params ConsumerParams, options ConsumerOptions) (co *Consumer, err error) {
 
 	encoder := schema.NewEncoder()
@@ -110,7 +112,7 @@ func (c *Client) NewConsumer(name string, params ConsumerParams, options Consume
 		return nil, err
 	}
 
-	br := bufio.NewReader(NewByteReader(conn))
+	br := bufio.NewReader(newByteReader(conn))
 
 	resp, err := http.ReadResponse(br, req)
 	if err != nil {
@@ -143,6 +145,7 @@ func (c *Client) NewConsumer(name string, params ConsumerParams, options Consume
 	return co, nil
 }
 
+//
 func (co *Consumer) Read(r *log.Record) (n int, err error) {
 
 	n, err = co.reader.Read(r)
@@ -153,6 +156,7 @@ func (co *Consumer) Read(r *log.Record) (n int, err error) {
 	return n, nil
 }
 
+//
 func (co *Consumer) Close() (err error) {
 
 	err = co.reader.Close()
@@ -163,6 +167,7 @@ func (co *Consumer) Close() (err error) {
 	return nil
 }
 
+//
 func (co *Consumer) HandleError(h ErrorHandler) {
 
 	co.reader.HandleError(tcp.ErrorHandler(h))

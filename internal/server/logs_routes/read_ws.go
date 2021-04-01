@@ -35,7 +35,7 @@ func (lr *LogsRouter) ReadWSHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	name := vars["name"]
 
-	params := api.ReadRecordsWSParams{
+	params := api.ConsumeParams{
 		Whence:   log.SeekOrigin,
 		Position: 0,
 		Count:    -1,

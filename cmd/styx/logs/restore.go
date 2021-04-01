@@ -18,7 +18,7 @@ import (
 	"os"
 
 	"github.com/dataptive/styx/cmd"
-	"github.com/dataptive/styx/pkg/client"
+	styx "github.com/dataptive/styx/pkg/client"
 
 	"github.com/spf13/pflag"
 )
@@ -50,13 +50,13 @@ func RestoreLog(args []string) {
 		cmd.DisplayUsage(cmd.SuccessCode, logsRestoreUsage)
 	}
 
-	httpClient := client.NewClient(*host)
+	client := styx.NewClient(*host)
 
 	if restoreOpts.NArg() != 1 {
 		cmd.DisplayUsage(cmd.MisuseCode, logsRestoreUsage)
 	}
 
-	err = httpClient.RestoreLog(args[0], os.Stdin)
+	err = client.RestoreLog(args[0], os.Stdin)
 	if err != nil {
 		cmd.DisplayError(err)
 	}

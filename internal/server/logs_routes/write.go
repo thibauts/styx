@@ -49,7 +49,7 @@ func (lr *LogsRouter) WriteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if recordSize == 0 {
-		api.WriteResponse(w, http.StatusOK, api.WriteRecordResponse{})
+		api.WriteResponse(w, http.StatusOK, api.ProduceResponse{})
 		return
 	}
 
@@ -117,7 +117,7 @@ func (lr *LogsRouter) WriteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := api.WriteRecordResponse(progress)
+	response := api.ProduceResponse(progress)
 
 	api.WriteResponse(w, http.StatusOK, response)
 }

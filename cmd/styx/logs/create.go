@@ -16,9 +16,7 @@ package logs
 
 import (
 	"github.com/dataptive/styx/cmd"
-	"github.com/dataptive/styx/pkg/api"
-	"github.com/dataptive/styx/pkg/client"
-	"github.com/dataptive/styx/pkg/log"
+	styx "github.com/dataptive/styx/pkg/client"
 
 	"github.com/spf13/pflag"
 )
@@ -55,14 +53,14 @@ end_position:	{{.EndPosition}}
 func CreateLog(args []string) {
 
 	createOpts := pflag.NewFlagSet("logs create", pflag.ContinueOnError)
-	maxRecordSize := createOpts.Int("max-record-size", log.DefaultConfig.MaxRecordSize, "")
-	indexAfterSize := createOpts.Int64("index-after-size", log.DefaultConfig.IndexAfterSize, "")
-	segmentMaxCount := createOpts.Int64("segment-max-count", log.DefaultConfig.SegmentMaxCount, "")
-	segmentMaxSize := createOpts.Int64("segment-max-size", log.DefaultConfig.SegmentMaxSize, "")
-	segmentMaxAge := createOpts.Int64("segment-max-age", log.DefaultConfig.SegmentMaxAge, "")
-	logMaxCount := createOpts.Int64("log-max-count", log.DefaultConfig.LogMaxCount, "")
-	logMaxSize := createOpts.Int64("log-max-size", log.DefaultConfig.LogMaxSize, "")
-	logMaxAge := createOpts.Int64("log-max-age", log.DefaultConfig.LogMaxAge, "")
+	maxRecordSize := createOpts.Int("max-record-size", styx.DefaultLogConfig.MaxRecordSize, "")
+	indexAfterSize := createOpts.Int64("index-after-size", styx.DefaultLogConfig.IndexAfterSize, "")
+	segmentMaxCount := createOpts.Int64("segment-max-count", styx.DefaultLogConfig.SegmentMaxCount, "")
+	segmentMaxSize := createOpts.Int64("segment-max-size", styx.DefaultLogConfig.SegmentMaxSize, "")
+	segmentMaxAge := createOpts.Int64("segment-max-age", styx.DefaultLogConfig.SegmentMaxAge, "")
+	logMaxCount := createOpts.Int64("log-max-count", styx.DefaultLogConfig.LogMaxCount, "")
+	logMaxSize := createOpts.Int64("log-max-size", styx.DefaultLogConfig.LogMaxSize, "")
+	logMaxAge := createOpts.Int64("log-max-age", styx.DefaultLogConfig.LogMaxAge, "")
 	format := createOpts.StringP("format", "f", "text", "")
 	host := createOpts.StringP("host", "H", "http://localhost:7123", "")
 	isHelp := createOpts.BoolP("help", "h", false, "")
@@ -83,10 +81,10 @@ func CreateLog(args []string) {
 		cmd.DisplayUsage(cmd.MisuseCode, logsCreateUsage)
 	}
 
-	httpClient := client.NewClient(*host)
+	client := styx.NewClient(*host)
 
 	name := createOpts.Args()[0]
-	config := api.LogConfig{
+	config := styx.LogConfig{
 		MaxRecordSize:   *maxRecordSize,
 		IndexAfterSize:  *indexAfterSize,
 		SegmentMaxCount: *segmentMaxCount,
@@ -97,7 +95,7 @@ func CreateLog(args []string) {
 		LogMaxAge:       *logMaxAge,
 	}
 
-	log, err := httpClient.CreateLog(name, config)
+	log, err := client.CreateLog(name, config)
 	if err != nil {
 		cmd.DisplayError(err)
 	}

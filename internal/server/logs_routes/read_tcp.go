@@ -50,7 +50,7 @@ func (lr *LogsRouter) ReadTCPHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	params := api.ReadRecordsTCPParams{
+	params := api.ConsumeParams{
 		Whence:   log.SeekOrigin,
 		Position: 0,
 		Count:    -1,
