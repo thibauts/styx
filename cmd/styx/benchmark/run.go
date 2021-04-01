@@ -218,9 +218,9 @@ func RunBenchmark(args []string) {
 	fmt.Printf("%s\n", benchmarkLogo)
 
 	params := [][]int{
-		{10, 10000000},
-		{100, 1000000},
-		{1000, 100000},
+		{10, 100000000},
+		{100, 10000000},
+		{1000, 1000000},
 	}
 
 	for _, param := range params {
